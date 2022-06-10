@@ -8,7 +8,7 @@
 
 # Code:
 ```js
-function range(n,r,a){null==r&&(r=n||0,n=0),a||(a=r<n?-1:1);for(var o=Math.max(Math.ceil((r-n)/a),0),t=Array(o),e=0;e<o;e++,n+=a)t[e]=n;return t}function answer(){var n=-1;try{var r=questions.find((n=>n.id==window.location.pathname.split("/")[2]));for(i of range(parseInt(r.options.length)))1===r.options[i].correct&&(n=i);console.log("Correct answer: "+parseInt(n+1))}catch(n){}}answer();
+function range(n,t,o){null==t&&(t=n||0,n=0),o||(o=t<n?-1:1);for(var r=Math.max(Math.ceil((t-n)/o),0),e=Array(r),a=0;a<r;a++,n+=o)e[a]=n;return e}function answer(){var n=-1;try{var t=questions.find((n=>n.id==window.location.pathname.split("/")[2]));for(i of range(parseInt(t.options.length)))1===t.options[i].correct&&(n=i);console.log("Correct answer: "+parseInt(n+1)),document.getElementById("option"+n).click()}catch(n){}}answer();
 ```
 
 # Uncompressed code:
@@ -42,6 +42,7 @@ function answer() {
             correct_answer = i
       }
       console.log("Correct answer: "  + parseInt(correct_answer + 1))
+      document.getElementById("option" + correct_answer).click()
    } catch (error) {}
 }
 
