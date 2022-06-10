@@ -209,13 +209,22 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
      } catch (error) {}
   }
 
-  // run for the first time
-  answer()
+  //check if the website is supported
+  if (window.location.hostname.includes("www.umime")) {
+    console.log("Source code: https://github.com/MP3Martin/umimecesky-solver")
 
-  // loop
-  window.timer.start(function(){
-     answer()
-  }, 1500);
+    // run for the first time
+    answer()
+
+    // loop
+    window.timer.start(function(){
+      answer()
+    }, 1500);
+  } else {
+    window.sstop_btn()
+    console.log("This website is not supported!")
+  }
+  
   ```
 
 </details>
