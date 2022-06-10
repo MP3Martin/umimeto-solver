@@ -82,7 +82,7 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
 	background-color: #ef2929;
   }
 	  
-  .sstop_slider {
+  #sstop_slider {
 	  -webkit-transform: rotate(180deg);
 	  -moz-transform: rotate(180deg);
 	  -o-transform: rotate(180deg);
