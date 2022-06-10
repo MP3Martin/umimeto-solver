@@ -9,49 +9,58 @@
 # Code:
 *(paste it into your browser console (`ctrl` + `shift` + `c` and select `console` tab))*
 ```js
-function range(n,t,r){null==t&&(t=n||0,n=0),r||(r=t<n?-1:1);for(var e=Math.max(Math.ceil((t-n)/r),0),o=Array(e),a=0;a<e;a++,n+=r)o[a]=n;return o}function answer(){var n=-1;try{var t=questions.find((n=>n.id==window.location.pathname.split("/")[2]));for(i of range(parseInt(t.options.length)))1===t.options[i].correct&&(n=i);console.log("Correct answer: "+parseInt(n+1)),document.getElementById("option"+n).click()}catch(n){}}answer();var intervalId=window.setInterval((function(){answer()}),1500);
+function range(n,t,r){null==t&&(t=n||0,n=0),r||(r=t<n?-1:1);for(var e=Math.max(Math.ceil((t-n)/r),0),a=Array(e),o=0;o<e;o++,n+=r)a[o]=n;return a}function sstop(){clearInterval(intervalId)}function answer(){var n=-1;try{var t=questions.find((n=>n.id==window.location.pathname.split("/")[2]));for(i of range(parseInt(t.options.length)))1===t.options[i].correct&&(n=i);console.log("Correct answer: "+parseInt(n+1)),document.getElementById("option"+n).click()}catch(n){}}answer();var intervalId=window.setInterval((function(){answer()}),1500);
 ```
+<br>
+<details>
+  <summary><strong>Uncompressed code</strong></summary>
+  
+  # Uncompressed code:
 
-# Uncompressed code:
+  ```js
+  function range(start, stop, step) {
+    if (stop == null) {
+      stop = start || 0;
+      start = 0;
+    }
+    if (!step) {
+      step = stop < start ? -1 : 1;
+    }
 
-```js
-function range(start, stop, step) {
-  if (stop == null) {
-    stop = start || 0;
-    start = 0;
+    var length = Math.max(Math.ceil((stop - start) / step), 0);
+    var range = Array(length);
+
+    for (var idx = 0; idx < length; idx++, start += step) {
+      range[idx] = start;
+    }
+
+    return range;
   }
-  if (!step) {
-    step = stop < start ? -1 : 1;
+  
+  function sstop() {
+     clearInterval(intervalId) 
   }
 
-  var length = Math.max(Math.ceil((stop - start) / step), 0);
-  var range = Array(length);
-
-  for (var idx = 0; idx < length; idx++, start += step) {
-    range[idx] = start;
+  function answer() {
+    var correct_answer = -1
+     try {
+        var answers = questions.find(q => q.id == window.location.pathname.split("/")[2])
+        for (i of range(parseInt(answers.options.length))) {
+           if (answers.options[i].correct === 1)
+              correct_answer = i
+        }
+        console.log("Correct answer: "  + parseInt(correct_answer + 1))
+        document.getElementById("option" + correct_answer).click()
+     } catch (error) {}
   }
 
-  return range;
-}
+  // run for the first time
+  answer()
 
-function answer() {
-  var correct_answer = -1
-   try {
-      var answers = questions.find(q => q.id == window.location.pathname.split("/")[2])
-      for (i of range(parseInt(answers.options.length))) {
-         if (answers.options[i].correct === 1)
-            correct_answer = i
-      }
-      console.log("Correct answer: "  + parseInt(correct_answer + 1))
-      document.getElementById("option" + correct_answer).click()
-   } catch (error) {}
-}
+  // loop
+  var intervalId = window.setInterval(function(){
+     answer()
+  }, 1500);
+  ```
 
-// run for the first time
-answer()
-
-// loop
-var intervalId = window.setInterval(function(){
-   answer()
-}, 1500);
-```
+</details>
