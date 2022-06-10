@@ -1,12 +1,12 @@
-# umimecesky-solver
-╰ Javascript code to solve https://umimecesky.cz for you <br>
+# umimeto-solver
+╰ Javascript code to solve https://umimeto.org for you <br>
 
-**Initial code from https://github.com/MiftikCZ/umimecesky-solver**
+**Initial idea from https://github.com/MiftikCZ/umimecesky-solver**
 <br> <br>
 
 **⚠For educational purposes only!⚠**
 <br> <br>
-🇨🇿 Click [**here**](https://github-com.translate.goog/MP3Martin/umimecesky-solver?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=cs&_x_tr_pto=wapp) to see this webpage in Czech 🇨🇿
+🇨🇿 Click [**here**](https://github-com.translate.goog/MP3Martin/umimeto-solver?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=cs&_x_tr_pto=wapp) to see this webpage in Czech 🇨🇿
 
 # Code:
 *(paste it into your browser console (`ctrl` + `shift` + `c` and select `console` tab))*
