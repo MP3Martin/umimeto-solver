@@ -8,7 +8,7 @@
 
 # Code:
 ```js
-function e(a,b,c){if(b==null){b=a||0;a=0}if(!c){c=b<a?-1:1}var d=Math.max(Math.ceil((b-a)/c),0);var e=Array(d);for(var f=0;f<d;f++,a+=c){e[f]=a}return e}function answer(){var a=-1 try{var b=questions.find(q=>q.id==window.location.pathname.split("/")[2])for(i of range(parseInt(b.options.length))){if(b.options[i].correct===1)a=i}console.log("Correct answer: "+parseInt(a+1))}catch(error){}}answer()
+function range(n,r,a){null==r&&(r=n||0,n=0),a||(a=r<n?-1:1);for(var o=Math.max(Math.ceil((r-n)/a),0),t=Array(o),e=0;e<o;e++,n+=a)t[e]=n;return t}function answer(){var n=-1;try{var r=questions.find((n=>n.id==window.location.pathname.split("/")[2]));for(i of range(parseInt(r.options.length)))1===r.options[i].correct&&(n=i);console.log("Correct answer: "+parseInt(n+1))}catch(n){}}answer();
 ```
 
 # Uncompressed code:
