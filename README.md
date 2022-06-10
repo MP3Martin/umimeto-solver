@@ -1,3 +1,9 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/MP3Martin/umimeto-solver/badge)](#/)
+[<img src="https://img.shields.io/github/license/MP3Martin/umimeto-solver">](#/)
+[<img src="https://img.shields.io/github/stars/MP3Martin/umimeto-solver">](#/)
+[<img src="https://img.shields.io/github/forks/MP3Martin/umimeto-solver">](#/)
+[<img src="https://img.shields.io/github/issues/MP3Martin/umimeto-solver">](#/)
+
 # umimeto-solver
 ╰ Javascript code to solve https://umimeto.org for you <br>
 
