@@ -8,5 +8,17 @@
 
 # Code:
 ```
-console.log("WIP")
+function answer() {
+  var correct_answer = -1
+   try {
+      var answers = questions.find(q => q.id == window.location.pathname.split("/")[2])
+      for (i in answers.options.length) {parseInt(Value, radix)
+         if (answers.options[i].correct === 1)
+            correct_answer = i
+      }
+      console.log("Correct answer: " + correct_answer + 1)
+   } catch (error) {}
+}
+
+answer()
 ```
