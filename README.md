@@ -4,7 +4,7 @@
 **Initial code from https://github.com/MiftikCZ/umimecesky-solver**
 <br> <br>
 
-**⚠Not finished⚠**
+**⚠For educational purposes only!⚠**
 
 # Code:
 *(paste it into your browser console (`ctrl` + `shift` + `c` and select `console` tab))*
