@@ -5,6 +5,8 @@
 <br> <br>
 
 **⚠For educational purposes only!⚠**
+<br> <br>
+🇨🇿 Click [**here**](https://github-com.translate.goog/MP3Martin/umimecesky-solver?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=cs&_x_tr_pto=wapp) to see this webpage in Czech 🇨🇿
 
 # Code:
 *(paste it into your browser console (`ctrl` + `shift` + `c` and select `console` tab))*
