@@ -7,8 +7,9 @@
 **⚠Not finished⚠**
 
 # Code:
+*(paste it into your browser console (`ctrl` + `shift` + `c` and select `console` tab))*
 ```js
-function range(n,t,o){null==t&&(t=n||0,n=0),o||(o=t<n?-1:1);for(var r=Math.max(Math.ceil((t-n)/o),0),e=Array(r),a=0;a<r;a++,n+=o)e[a]=n;return e}function answer(){var n=-1;try{var t=questions.find((n=>n.id==window.location.pathname.split("/")[2]));for(i of range(parseInt(t.options.length)))1===t.options[i].correct&&(n=i);console.log("Correct answer: "+parseInt(n+1)),document.getElementById("option"+n).click()}catch(n){}}answer();
+function range(n,t,r){null==t&&(t=n||0,n=0),r||(r=t<n?-1:1);for(var o=Math.max(Math.ceil((t-n)/r),0),e=Array(o),a=0;a<o;a++,n+=r)e[a]=n;return e}function answer(){var n=-1;try{var t=questions.find((n=>n.id==window.location.pathname.split("/")[2]));for(i of range(parseInt(t.options.length)))1===t.options[i].correct&&(n=i);console.log("Correct answer: "+parseInt(n+1)),document.getElementById("option"+n).click()}catch(n){}}var intervalId=window.setInterval((function(){answer()}),1500);
 ```
 
 # Uncompressed code:
@@ -46,5 +47,7 @@ function answer() {
    } catch (error) {}
 }
 
-answer()
+var intervalId = window.setInterval(function(){
+   answer()
+}, 1500);
 ```
