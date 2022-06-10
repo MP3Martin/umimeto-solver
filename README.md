@@ -231,5 +231,6 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
 
 </details>
 
+<br>
 
-Thanks ❤️ for **⭐** this repository.
+Thanks *❤️* for **⭐** this repository.
