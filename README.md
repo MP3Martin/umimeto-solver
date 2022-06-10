@@ -222,7 +222,7 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
     }, 1500);
   } else {
     window.sstop_btn()
-    console.log("This website is not supported!")
+    console.log("\n\nThis website is not supported!")
   }
   
   ```
