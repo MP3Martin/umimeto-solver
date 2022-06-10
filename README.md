@@ -183,7 +183,7 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
   stop_div.innerHTML += "<br>"
 
   stop_div.innerHTML += '<div style="position: absolute;" id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"></div>'
-  document.getElementById("sstop_slider_div").innerHTML += '<input onchange="console.log(this.value)" id="sstop_slider" type="range" min="100" max="20000" value="1500" style="position: absolute;">'
+  document.getElementById("sstop_slider_div").innerHTML += '<input onchange="window.timer.set_interval(this.value);" id="sstop_slider" type="range" min="100" max="20000" value="1500" style="position: absolute;">'
   
   window.sstop = function() {
      window.timer.stop();
