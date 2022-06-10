@@ -16,7 +16,7 @@ function answer() {
          if (answers.options[i].correct === 1)
             correct_answer = i
       }
-      console.log("Correct answer: " + correct_answer + 1)
+      console.log("Correct answer: "  + parseInt(correct_answer + 1))
    } catch (error) {}
 }
 
