@@ -18,6 +18,33 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
   # Uncompressed code:
 
   ```js
+  window.timer = {
+    running: false,
+    iv: 5000,
+    timeout: false,
+    cb : function(){},
+    start : function(cb,iv){
+        var elm = this;
+        clearInterval(this.timeout);
+        this.running = true;
+        if(cb) this.cb = cb;
+        if(iv) this.iv = iv;
+        this.timeout = setTimeout(function(){elm.execute(elm)}, this.iv);
+    },
+    execute : function(e){
+        if(!e.running) return false;
+        e.cb();
+        e.start();
+    },
+    stop : function(){
+        this.running = false;
+    },
+    set_interval : function(iv){
+        clearInterval(this.timeout);
+        this.start(false, iv);
+    }
+  };
+	
   function range(start, stop, step) {
     if (stop == null) {
       stop = start || 0;
@@ -38,29 +65,128 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
   }
   
   // create stop button
-  document.body.innerHTML += "<div id='sstop' style='position:absolute; top:0; right:0; margin:5px; margin-right: 8px;'></div>"
+  document.body.innerHTML += "<div id='sstop' style='position:absolute; top:0; right:0; margin:5px; margin-right: 25px; '></div>"
   document.body.innerHTML += `
   <style id="sstop_style">
   #sstop_button {
-		color: #ffffff;
-		background-color: #cc0000;
-		font-size: 19px;
-		border-radius: 12px;
-		padding: 10px 15px;
-		cursor: pointer
-	}
-    
-	#sstop_button:hover {
-		color: #000000;
-		background-color: #ef2929;
-	}
+	color: #ffffff;
+	background-color: #cc0000;
+	font-size: 19px;
+	border-radius: 12px;
+	padding: 10px 15px;
+	cursor: pointer
+  }
+
+  #sstop_button:hover {
+	color: #000000;
+	background-color: #ef2929;
+  }
+	  
+  .sstop_slider {
+	  -webkit-transform: rotate(180deg);
+	  -moz-transform: rotate(180deg);
+	  -o-transform: rotate(180deg);
+	  -ms-transform: rotate(180deg);
+	  transform: rotate(180deg);
+
+	  -moz-transform: scaleX(-1);
+	  -o-transform: scaleX(-1);
+	  -webkit-transform: scaleX(-1);
+	  transform: scaleX(-1);
+	  filter: FlipH;
+	  -ms-filter: "FlipH";
+  }
+	  
+  /* setup tooltips */
+    .tooltip {
+      position: relative;
+    }
+    .tooltip:before,
+    .tooltip:after {
+      display: block;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+    .tooltip:after {
+    	border-right: 6px solid transparent;
+    	border-bottom: 6px solid rgba(0,0,0,.75); 
+      border-left: 6px solid transparent;
+      content: '';
+      height: 0;
+        top: 20px;
+        left: 20px;
+      width: 0;
+    }
+    .tooltip:before {
+      background: rgba(0,0,0,.75);
+      border-radius: 2px;
+      color: #fff;
+      content: attr(data-title);
+      font-size: 14px;
+      padding: 6px 10px;
+        top: 26px;
+      white-space: nowrap;
+    }
+
+    /* the animations */
+    /* fade */
+    .tooltip.fade:after,
+    .tooltip.fade:before {
+      transform: translate3d(0,-10px,0);
+      transition: all .15s ease-in-out;
+    }
+    .tooltip.fade:hover:after,
+    .tooltip.fade:hover:before {
+      opacity: 1;
+      transform: translate3d(0,0,0);
+    }
+
+    /* expand */
+    .tooltip.expand:before {
+      transform: scale3d(.2,.2,1);
+      transition: all .2s ease-in-out;
+    }
+    .tooltip.expand:after {
+      transform: translate3d(0,6px,0);
+      transition: all .1s ease-in-out;
+    }
+    .tooltip.expand:hover:before,
+    .tooltip.expand:hover:after {
+      opacity: 1;
+      transform: scale3d(1,1,1);
+    }
+    .tooltip.expand:hover:after {
+      transition: all .2s .1s ease-in-out;
+    }
+
+    /* swing */
+    .tooltip.swing:before,
+    .tooltip.swing:after {
+      transform: translate3d(0,30px,0) rotate3d(0,0,1,60deg);
+      transform-origin: 0 0;
+      transition: transform .15s ease-in-out, opacity .2s;
+    }
+    .tooltip.swing:after {
+      transform: translate3d(0,60px,0);
+      transition: transform .15s ease-in-out, opacity .2s;
+    }
+    .tooltip.swing:hover:before,
+    .tooltip.swing:hover:after {
+      opacity: 1;
+      transform: translate3d(0,0,0) rotate3d(1,1,1,0deg);
+    }
   </style>
   `
   stop_div = document.getElementById("sstop")
-  stop_div.innerHTML += "<button type='button' id='sstop_button' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button>"
+  stop_div.innerHTML += "<button type='button' style='position: relative;' id='sstop_button' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button>"
+  stop_div.innerHTML += "<br>"
+
+  stop_div.innerHTML += '<div style="position: absolute;" id="sstop_slider_div" class="tooltip fade" data-title="Hypertext Markup Language"></div>'
+  document.getElementById("sstop_slider_div").innerHTML += '<input onchange="console.log(this.value)" type="range" min="100" max="20000" value="1500" style="position: absolute;">'
   
   window.sstop = function() {
-     clearInterval(window.intervalId) 
+     window.timer.stop();
   }
   
   window.sstop_btn = function() {
@@ -86,7 +212,7 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
   answer()
 
   // loop
-  window.intervalId = window.setInterval(function(){
+  window.timer.start(function(){
      answer()
   }, 1500);
   ```
