@@ -233,19 +233,36 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
   }
 
   function answer_twoOp_zavody() {
+    // var correct_answer = -1
+    // window.sstop_question_index = 0
+    // for (i of range(2)) {
+    //   document.getElementById("option" + i).addEventListener("click", function() { window.sstop_question_index += 1; });
+    // }
+    //  try {
+    //     var answers = questions[window.sstop_question_index]
+    //     for (i of range(parseInt(answers.options.length))) {
+    //        if (answers.options[i].correct === 1)
+    //           correct_answer = i
+    //     }
+    //     console.log("Correct answer: "  + parseInt(correct_answer + 1))
+    //     document.getElementById("option" + correct_answer).click()
+    //  } catch (error) {}
+
     var correct_answer = -1
-    window.sstop_question_index = 0
-    for (i of range(2)) {
-      document.getElementById("option" + i).addEventListener("click", function() { window.sstop_question_index += 1; });
-    }
      try {
-        var answers = questions[window.sstop_question_index]
-        for (i of range(parseInt(answers.options.length))) {
-           if (answers.options[i].correct === 1)
-              correct_answer = i
+        for (i of range(questions.length)) {
+          answers = questions[i]
+          if (answers.options[0].option[0][1] === document.getElementById("option0").firstChild.textContent && answers.options[1].option[0][1] === document.getElementById("option1").firstChild.textContent) {
+            for (i of range(parseInt(answers.options.length))) {
+              if (answers.options[i].correct === 1)
+                correct_answer = i
+              }
+            
+            console.log("Correct answer: "  + parseInt(correct_answer + 1))
+            document.getElementById("option" + correct_answer).click()
+          }
         }
-        console.log("Correct answer: "  + parseInt(correct_answer + 1))
-        document.getElementById("option" + correct_answer).click()
+        
      } catch (error) {}
   }
 
