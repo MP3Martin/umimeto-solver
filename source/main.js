@@ -177,19 +177,17 @@ window.sstop = function() {
 }
 
 window.sstop_btn = function() {
-  //remove variables
-  window.timer = null;
-  window.sstop_alert = null;
-  window.sstop_btn = null;
-
   //remove elements
   document.getElementById("sstop").remove()
   document.getElementById("sstop_style").remove()
 
   //stop timer
   sstop()
-  
-  //remove last variables
+
+  //remove variables
+  window.timer = null;
+  window.sstop_alert = null;
+  window.sstop_btn = null;
   window.sstop = null;
 }
 
