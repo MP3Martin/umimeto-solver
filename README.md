@@ -289,7 +289,7 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
       window.timer.start(function(){
         answer_twoOp()
       }, 1500);
-    } else if (window.location.href.includes("?p=zavody")) {
+    } else if (window.location.href.includes("?p=zavody") || window.location.href.includes("?p=tymovka")) {
       console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
       // run for the first time
       answer_twoOp_zavody()
