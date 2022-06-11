@@ -9,7 +9,7 @@
 # umimeto-solver
 ╰ Javascript code to solve https://umimeto.org for you <br>
 
-**Initial idea from https://github.com/MiftikCZ/umimeto-solver**
+**Initial idea from https://github.com/MiftikCZ/umimecesky-solver**
 <br> <br>
 
 **⚠For educational purposes only!⚠**
