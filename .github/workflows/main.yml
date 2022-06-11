@@ -30,6 +30,7 @@ jobs:
           branch: ${{ github.ref }}
 
   embed-code:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
