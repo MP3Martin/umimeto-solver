@@ -39,6 +39,11 @@ jobs:
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
           ref: refs/heads/${{ github.head_ref }}
 
+      - uses: egor-tensin/setup-gcc@v1
+        with:
+          version: latest
+          platform: x64
+
       - uses: MP3Martin/markdown-embed-code@main
         with:
           markdown: "README.md"
