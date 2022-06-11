@@ -36,13 +36,9 @@ jobs:
         with:
           commit_message: 'Minify-JS : Commit Pipeline'
           branch: ${{ github.ref }}
-
-  embed-code:
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-  
+      
+      # embed-code begins
+      
       - name: pull changes
         run: git pull
   
@@ -58,3 +54,4 @@ jobs:
             README.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
