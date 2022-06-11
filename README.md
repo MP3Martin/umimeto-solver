@@ -75,6 +75,11 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
 
     return range;
   }
+
+  window.sstop_alert = function(message) {
+    console.log("[umimeto-solver]: " + message)
+    alert("[umimeto-solver]\n\n" + message)
+  }
   
   // create stop button
   document.body.innerHTML += "<div id='sstop' style='position:absolute; top:0; right:0; margin:5px; margin-right: 25px; '></div>"
@@ -233,13 +238,11 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
       }, 1500);
     } else {
       window.sstop_btn()
-      console.log("\n\nThis exercise is not supported!")
-      alert("This exercise is not supported!")
+      sstop_alert("This exercise is not supported!")
     }
   } else {
     window.sstop_btn()
-    console.log("\n\nThis website is not supported!")
-    alert("This website is not supported!")
+    sstop_alert("This website is not supported!")
   }
   
   ```
