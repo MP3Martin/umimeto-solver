@@ -49,7 +49,10 @@ jobs:
         uses: varunsridharan/action-repository-meta@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      
+      - name: pull changes
+        run: git pull origin main
+      
       - name: "Dynamic Template Render"
         uses: varunsridharan/action-dynamic-readme@main
         with:
