@@ -307,7 +307,7 @@ function answer_ukolovka() {
   var correct_answer = ""
    try {
     var answers = questions.find(q => q.id == window.location.pathname.split("/")[2])
-    correct_answer = answers.item.question[2][1].answer[0]
+    correct_answer = answers.item.question[answers.item.question.length - 1][1].answer[0]
     console.log("Correct answer: "  + correct_answer)
     document.getElementById("answer0").value = correct_answer
     document.getElementById("evaluate").click()
