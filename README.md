@@ -24,6 +24,12 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
 *Tip: to run the code faster, type `javascript:` in the adress bar and paste the code after and press enter. **This faster way only works in Chrome! This method can be used to run the code on the phone.***
 
 <br>
+
+### Supported exercise types
+* rozhodovačka
+* doplňovačka
+
+<br>
 <details>
   <summary><strong>Uncompressed code</strong></summary>
   
