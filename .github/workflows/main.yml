@@ -21,7 +21,7 @@ jobs:
         uses: jossydevers/minify-js@v1.0.0
         with:
           directory: 'source/main.js' # (OPTIONAL)
-          output: 'source/' # (OPTIONAL)
+          output: 'source' # (OPTIONAL)
           
       # Auto-commit to repository
       - uses: stefanzweifel/git-auto-commit-action@v4
