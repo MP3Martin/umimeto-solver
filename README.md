@@ -45,6 +45,7 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
 
   <!-- START [code:js] source/main.js -->
 ```js
+alert("test123");
 window.timer = {
   running: false,
   iv: 5000,
