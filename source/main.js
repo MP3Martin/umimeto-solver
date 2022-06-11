@@ -1,3 +1,4 @@
+alert("test123");
 window.timer = {
   running: false,
   iv: 5000,
