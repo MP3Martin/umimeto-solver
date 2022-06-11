@@ -339,7 +339,7 @@ function answer_otazky() {
     var variants = ["variantjedna", "variantdva", "varianttri", "variantctyri"]
     for (i of variants) {
       if (document.getElementById(i).attributes.correct.value === "1") {
-        console.log("Correct answer: "  + i)
+        console.log("Correct answer: "  + document.getElementById(i).innerText)
         clickVariant($(document.getElementById(i)));
         break
       }
