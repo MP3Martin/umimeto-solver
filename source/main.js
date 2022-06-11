@@ -263,6 +263,25 @@ function answer_hadanky() {
    } catch (error) {}
 }
 
+function answer_diktat() {
+  var correct_answer = ""
+   try {
+    for (i of range($("[answered]").length)) {
+      if ($("[answered]")[i].attributes.answered.value === "0") {
+        console.log(i)
+        console.log($("[answered]")[i].childNodes[1])
+        break
+      }
+    }
+    
+    //
+
+    if (window.finished === 1) {
+      nextDictate();
+    }
+   } catch (error) {}
+}
+
 //check if the website is supported
 if (window.location.hostname.includes("www.umime")) {
   let ulr_ex_type = window.location.pathname.split("/")[1]
@@ -297,6 +316,14 @@ if (window.location.hostname.includes("www.umime")) {
     // loop
     window.timer.start(function(){
       answer_hadanky()
+    }, 1500);
+  } else if (window.location.href.includes("/diktat")) {
+    console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
+    // run for the first time
+    answer_diktat()
+    // loop
+    window.timer.start(function(){
+      answer_diktat()
     }, 1500);
   } else {
     window.sstop_btn()
