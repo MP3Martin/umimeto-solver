@@ -234,10 +234,12 @@ function range(n,t,o){null==t&&(t=n||0,n=0),o||(o=t<n?-1:1);for(var e=Math.max(M
     } else {
       window.sstop_btn()
       console.log("\n\nThis exercise is not supported!")
+      alert("This exercise is not supported!")
     }
   } else {
     window.sstop_btn()
     console.log("\n\nThis website is not supported!")
+    alert("This website is not supported!")
   }
   
   ```
