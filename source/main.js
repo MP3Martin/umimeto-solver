@@ -183,11 +183,11 @@ window.sstop = function() {
 
 window.sstop_btn = function() {
   //remove elements
-  document.getElementById("sstop").remove()
-  document.getElementById("sstop_style").remove()
+  document.getElementById("sstop").remove();
+  document.getElementById("sstop_style").remove();
 
   //stop timer
-  sstop()
+  sstop();
 
   //remove variables
   window.timer = null;
