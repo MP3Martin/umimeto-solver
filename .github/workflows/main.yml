@@ -40,7 +40,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
+  
+      - name: pull changes
+        run: git pull
+  
       - name: "Github Repository Metadata"
         uses: varunsridharan/action-repository-meta@main
         env:
