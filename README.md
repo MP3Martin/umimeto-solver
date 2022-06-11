@@ -18,9 +18,9 @@
 
 ## Code:
 *(paste it into your browser console (`ctrl` + `shift` + `c` and select `console` tab) and press `enter`)*
-```js:source/main.min.js
 
-```
+<!-- include [code:js] source/main.min.js --> 
+
 *Tip: to run the code faster, type `javascript:` in the adress bar and paste the code after and press enter. **This faster way only works in Chrome! This method can be used to run the code on the phone.***
 
 <br>
