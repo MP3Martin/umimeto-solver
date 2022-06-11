@@ -232,6 +232,23 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
      } catch (error) {}
   }
 
+  function answer_twoOp_zavody() {
+    var correct_answer = -1
+    window.sstop_question_index = 0
+    for (i of range(2)) {
+      document.getElementById("option" + i).addEventListener("click", function() { window.sstop_question_index += 1; });
+    }
+     try {
+        var answers = questions[window.sstop_question_index]
+        for (i of range(parseInt(answers.options.length))) {
+           if (answers.options[i].correct === 1)
+              correct_answer = i
+        }
+        console.log("Correct answer: "  + parseInt(correct_answer + 1))
+        document.getElementById("option" + correct_answer).click()
+     } catch (error) {}
+  }
+
   //check if the website is supported
   if (window.location.hostname.includes("www.umime")) {
     let ulr_ex_type = window.location.pathname.split("/")[1]
@@ -244,7 +261,13 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
         answer_twoOp()
       }, 1500);
     } else if (window.location.href.includes("?p=zavody")) {
-      //
+      console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
+      // run for the first time
+      answer_twoOp_zavody()
+      // loop
+      window.timer.start(function(){
+        answer_twoOp_zavody()
+      }, 1500);
     } else {
       window.sstop_btn()
       sstop_alert("This exercise is not supported!")
