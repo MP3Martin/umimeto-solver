@@ -223,15 +223,18 @@ function range(t,n,o){null==n&&(n=t||0,t=0),o||(o=n<t?-1:1);for(var e=Math.max(M
 
   //check if the website is supported
   if (window.location.hostname.includes("www.umime")) {
-    console.log("Source code: https://github.com/MP3Martin/umimeto-solver")
-
-    // run for the first time
-    answer()
-
-    // loop
-    window.timer.start(function(){
+    if (window.location.pathname.split("/")[1].includes("doplnovacka") || window.location.pathname.split("/")[1].includes("rozhodovacka")) {
+      console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
+      // run for the first time
       answer()
-    }, 1500);
+      // loop
+      window.timer.start(function(){
+        answer()
+      }, 1500);
+    } else {
+      window.sstop_btn()
+      console.log("\n\nThis exercise is not supported!")
+    }
   } else {
     window.sstop_btn()
     console.log("\n\nThis website is not supported!")
