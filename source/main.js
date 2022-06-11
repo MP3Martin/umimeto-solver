@@ -1,3 +1,8 @@
+// avoid multiple solvers
+if (window.timer) {
+  window.sstop_btn()
+}
+
 window.timer = {
   running: false,
   iv: 5000,
