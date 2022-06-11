@@ -55,7 +55,7 @@ window.sstop_alert = function(message) {
 }
 
 // create stop button
-document.body.innerHTML += "<div id='sstop' style='position:absolute; top:0; right:0; margin:5px; margin-right: 25px; '></div>"
+document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px; margin-right: 25px; '></div>"
 document.body.innerHTML += `
 <style id="sstop_style">
 #sstop_button {
