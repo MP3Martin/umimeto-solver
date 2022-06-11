@@ -1,6 +1,6 @@
 // avoid multiple solvers
 if (window.timer) {
-  window.sstop_btn()
+  window.sstop_btn();
 }
 
 window.timer = {
