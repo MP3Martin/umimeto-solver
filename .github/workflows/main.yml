@@ -27,6 +27,7 @@ jobs:
           output: 'source' # (OPTIONAL)
           
       - name: delete weird file
+        continue-on-error: true
         run: rm sourcemain.min.js
           
       # Auto-commit to repository
