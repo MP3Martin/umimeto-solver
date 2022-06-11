@@ -315,6 +315,14 @@ function answer_ukolovka() {
    } catch (error) {}
 }
 
+function answer_pexeso() {
+  var correct_answer = ""
+   try {
+    evaluate(1);
+    nextSet();
+   } catch (error) {}
+}
+
 //check if the website is supported
 if (window.location.hostname.includes("www.umime")) {
   let ulr_ex_type = window.location.pathname.split("/")[1]
@@ -368,6 +376,17 @@ if (window.location.hostname.includes("www.umime")) {
     // loop
     window.timer.start(function(){
       answer_ukolovka()
+    }, 1500);
+  } else if (window.location.href.includes("/pexeso")) {
+    console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
+    // run for the first time
+    answer_pexeso()
+
+    document.getElementById("sstop_slider").attributes.min.value = "50" 
+
+    // loop
+    window.timer.start(function(){
+      answer_pexeso()
     }, 1500);
   } else {
     window.sstop_btn()
