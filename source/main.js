@@ -173,12 +173,24 @@ document.getElementById("sstop_slider_div").innerHTML += '<input onchange="windo
 
 window.sstop = function() {
    window.timer.stop();
+
 }
 
 window.sstop_btn = function() {
+  //remove variables
+  window.timer = null;
+  window.sstop_alert = null;
+  window.sstop_btn = null;
+
+  //remove elements
   document.getElementById("sstop").remove()
-   document.getElementById("sstop_style").remove()
-   sstop()
+  document.getElementById("sstop_style").remove()
+
+  //stop timer
+  sstop()
+  
+  //remove last variables
+  window.sstop = null;
 }
 
 function answer_twoOp() {
