@@ -265,13 +265,19 @@ function answer_hadanky() {
 
 function answer_diktat() {
   var correct_answer = ""
+  var el
    try {
     for (i of range($("[answered]").length)) {
       if ($("[answered]")[i].attributes.answered.value === "0") {
-        console.log(i)
-        console.log($("[answered]")[i].childNodes[1])
+        el = $("[answered]")[i].childNodes[1]
         break
       }
+    }
+
+    if (el.childNodes[0].attributes.correct.value === "1") {
+      clickVariant($(el.childNodes[0]));
+    } else if (el.childNodes[1].attributes.correct.value === "1") {
+      clickVariant($(el.childNodes[1]));
     }
     
     //
@@ -321,6 +327,9 @@ if (window.location.hostname.includes("www.umime")) {
     console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
     // run for the first time
     answer_diktat()
+
+    document.getElementById("sstop_slider").attributes.min.value = "50" 
+
     // loop
     window.timer.start(function(){
       answer_diktat()
