@@ -314,9 +314,11 @@ if (window.location.hostname.includes("www.umime")) {
   sstop_alert("This website is not supported!")
 }
 
-```<!-- END [code:js] source/main.js -->
+```
+<!-- END [code:js] source/main.js -->
 
 </details>
+
 
 ## Example
 <details>
