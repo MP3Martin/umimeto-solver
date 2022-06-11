@@ -21,10 +21,26 @@ jobs:
         uses: jossydevers/minify-js@v1.0.1
         with:
           directory: 'source/main.js' # (OPTIONAL)
-          output: 'source/' # (OPTIONAL)
+          output: 'source' # (OPTIONAL)
           
       # Auto-commit to repository
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Minify-JS : Commit Pipeline'
           branch: ${{ github.ref }}
+
+  embed-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+          ref: refs/heads/${{ github.head_ref }}
+
+      - uses: tokusumi/markdown-embed-code@main
+        with:
+          markdown: "README.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          message: "Synchronizing readme"
+          silent: true
