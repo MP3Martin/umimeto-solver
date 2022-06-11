@@ -40,7 +40,7 @@ jobs:
       # embed-code begins
       
       - name: pull changes
-        run: git pull
+        run: git pull origin main
   
       - name: "Github Repository Metadata"
         uses: varunsridharan/action-repository-meta@main
