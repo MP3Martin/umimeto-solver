@@ -41,6 +41,9 @@ jobs:
       
       - name: pull changes
         run: git pull origin main
+      
+      - name: select branch
+        run: git checkout main
   
       - name: "Github Repository Metadata"
         uses: varunsridharan/action-repository-meta@main
