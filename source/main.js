@@ -55,7 +55,7 @@ window.sstop_alert = function(message) {
 }
 
 // create stop button
-document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px; margin-right: 25px; '></div>"
+document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px;'></div>"
 document.body.innerHTML += `
 <style id="sstop_style">
 #sstop_button {
@@ -194,6 +194,16 @@ window.sstop_btn = function() {
   window.sstop_alert = null;
   window.sstop_btn = null;
   window.sstop = null;
+}
+
+$(window).resize(function () {
+  resized()
+});
+
+resized();
+
+function resized() {
+  document.getElementById("sstop_slider").style.width = parseInt((95 / 100) * document.getElementById("sstop_button").offsetWidth) + "px";
 }
 
 function answer_twoOp() {
