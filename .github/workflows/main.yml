@@ -15,6 +15,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
+          
+      - name: delete minified file
+        run: rm source/main.min.js
 
       # Job for Minify-JS
       - name: Minify-JS Action
@@ -22,6 +25,7 @@ jobs:
         with:
           directory: 'source/main.js' # (OPTIONAL)
           output: 'source' # (OPTIONAL)
+          
       - name: delete weird file
         run: rm sourcemain.min.js
           
