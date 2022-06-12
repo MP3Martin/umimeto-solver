@@ -360,6 +360,9 @@ function answer_rozrazovacka() {
         box = 0
       } else if (el.attributes.correctvariant.value === "1") {
         box = 1
+      } else {
+        sstop_alert('This type of "rozřazovačka" is saddly not supported!')
+        window.sstop_btn();
       }
       for (e of range(document.getElementById("set" + box).childNodes.length)) {
         if (e % 2 == 0) {
