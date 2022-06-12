@@ -40,6 +40,7 @@ function range(t,n,e){null==n&&(n=t||0,t=0),e||(e=n<t?-1:1);for(var o=Math.max(M
 * diktát
 * úkolovka
 * otázky
+* rozřazovačka
 
 <br>
 

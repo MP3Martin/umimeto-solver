@@ -349,6 +349,38 @@ function answer_otazky() {
    } catch (error) {}
 }
 
+function answer_rozrazovacka() {
+  var correct_answer = ""
+  var box = -1
+   try {
+    for (i of range(document.getElementById("pool").childNodes.length)) {
+      var el = document.getElementById("word" + i)
+      wordClicked($(el));
+      if (el.attributes.correctvariant.value === "0") {
+        box = 0
+      } else if (el.attributes.correctvariant.value === "1") {
+        box = 1
+      }
+      for (e of range(document.getElementById("set" + box).childNodes.length)) {
+        if (e % 2 == 0) {
+          if (document.getElementById("set" + box).childNodes[e].attributes.currentword.value === "-1") {
+            // console.log("box: " + box + ", set: " + e)
+            if (el.attributes.currentbox.value === "-1") {
+              wordBoxClicked($(document.getElementById("wordBox-" + box + "-" + parseInt(e / 2))));
+              break
+            }
+          }
+        }
+      }
+    }
+    
+    setTimeout(() => {
+      evaluate();
+      nextSet();
+    }, window.timer.iv / 5);
+   } catch (error) {}
+}
+
 //check if the website is supported
 if (window.location.hostname.includes("www.umime")) {
   let ulr_ex_type = window.location.pathname.split("/")[1]
@@ -421,6 +453,14 @@ if (window.location.hostname.includes("www.umime")) {
     // loop
     window.timer.start(function(){
       answer_otazky()
+    }, 1500);
+  } else if (window.location.href.includes("/rozrazovacka")) {
+    console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
+    // run for the first time
+    answer_rozrazovacka()
+    // loop
+    window.timer.start(function(){
+      answer_rozrazovacka()
     }, 1500);
   } else {
     window.sstop_btn()
