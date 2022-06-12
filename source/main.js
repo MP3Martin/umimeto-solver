@@ -463,9 +463,11 @@ if (window.location.hostname.includes("www.umime")) {
     // run for the first time
     answer_rozrazovacka()
     // loop
-    window.timer.start(function(){
-      answer_rozrazovacka()
-    }, 1500);
+    try {
+      window.timer.start(function(){
+        answer_rozrazovacka()
+      }, 1500);
+    } catch (error) {}
   } else {
     window.sstop_btn()
     sstop_alert("This exercise is not supported!")
