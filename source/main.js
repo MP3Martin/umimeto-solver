@@ -363,6 +363,7 @@ function answer_rozrazovacka() {
       } else {
         sstop_alert('This type of "rozřazovačka" is saddly not supported!')
         window.sstop_btn();
+        break;
       }
       for (e of range(document.getElementById("set" + box).childNodes.length)) {
         if (e % 2 == 0) {
