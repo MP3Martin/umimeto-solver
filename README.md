@@ -545,4 +545,10 @@ https://user-images.githubusercontent.com/60501493/173131436-96fed050-b999-46ea-
 </details>
 
 
-Thanks *❤️* for **⭐** this repository.
+# Contributing
+* You can create a pull request to merge your fork of this project
+* The file that contains the source code is [source/main.js](https://github.com/MP3Martin/umimeto-solver/blob/main/source/main.js) (other files are auto updated)
+
+<br><br>
+
+Thanks for **⭐** this repository. *❤️*
