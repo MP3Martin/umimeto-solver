@@ -469,10 +469,10 @@ if (window.location.hostname.includes("www.umime")) {
       }, 1500);
     } catch (error) {}
   } else {
-    window.sstop_btn()
     sstop_alert("This exercise is not supported!")
+    window.sstop_btn()
   }
 } else {
-  window.sstop_btn()
   sstop_alert("This website is not supported!")
+  window.sstop_btn()
 }
