@@ -1,9 +1,9 @@
 // avoid multiple solvers
-if (window.timer) {
+if (window.sstop_timer) {
   window.sstop_btn();
 }
 
-window.timer = {
+window.sstop_timer = {
   running: false,
   iv: 5000,
   timeout: false,
@@ -174,10 +174,10 @@ stop_div.innerHTML += "<button type='button' style='position: relative;' id='sst
 stop_div.innerHTML += "<br>"
 
 stop_div.innerHTML += '<div style="position: absolute;" id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"></div>'
-document.getElementById("sstop_slider_div").innerHTML += '<input onchange="window.timer.set_interval(this.value);" id="sstop_slider" type="range" min="300" max="5000" value="1500" style="position: absolute;">'
+document.getElementById("sstop_slider_div").innerHTML += '<input onchange="window.sstop_timer.set_interval(this.value);" id="sstop_slider" type="range" min="300" max="5000" value="1500" style="position: absolute;">'
 
 window.sstop = function() {
-   window.timer.stop();
+   window.sstop_timer.stop();
 
 }
 
@@ -190,7 +190,7 @@ window.sstop_btn = function() {
   sstop();
 
   //remove variables
-  window.timer = null;
+  window.sstop_timer = null;
   window.sstop_alert = null;
   window.sstop_btn = null;
   window.sstop = null;
@@ -381,7 +381,7 @@ function answer_rozrazovacka() {
     setTimeout(() => {
       evaluate();
       nextSet();
-    }, window.timer.iv / 5);
+    }, window.sstop_timer.iv / 5);
    } catch (error) {}
 }
 
@@ -393,7 +393,7 @@ if (window.location.hostname.includes("www.umime")) {
     // run for the first time
     answer_twoOp()
     // loop
-    window.timer.start(function(){
+    window.sstop_timer.start(function(){
       answer_twoOp()
     }, 1500);
   } else if (window.location.href.includes("?p=zavody") || window.location.href.includes("?p=tymovka")) {
@@ -401,7 +401,7 @@ if (window.location.hostname.includes("www.umime")) {
     // run for the first time
     answer_twoOp_zavody()
     // loop
-    window.timer.start(function(){
+    window.sstop_timer.start(function(){
       answer_twoOp_zavody()
     }, 1500);
   } else if (window.location.href.includes("/vpisovacka")) {
@@ -409,7 +409,7 @@ if (window.location.hostname.includes("www.umime")) {
     // run for the first time
     answer_vpisovacka()
     // loop
-    window.timer.start(function(){
+    window.sstop_timer.start(function(){
       answer_vpisovacka()
     }, 1500);
   } else if (window.location.href.includes("/hadanky")) {
@@ -417,7 +417,7 @@ if (window.location.hostname.includes("www.umime")) {
     // run for the first time
     answer_hadanky()
     // loop
-    window.timer.start(function(){
+    window.sstop_timer.start(function(){
       answer_hadanky()
     }, 1500);
   } else if (window.location.href.includes("/diktat")) {
@@ -428,7 +428,7 @@ if (window.location.hostname.includes("www.umime")) {
     document.getElementById("sstop_slider").attributes.min.value = "50" 
 
     // loop
-    window.timer.start(function(){
+    window.sstop_timer.start(function(){
       answer_diktat()
     }, 1500);
   } else if (window.location.href.includes("/ukolovka")) {
@@ -436,7 +436,7 @@ if (window.location.hostname.includes("www.umime")) {
     // run for the first time
     answer_ukolovka()
     // loop
-    window.timer.start(function(){
+    window.sstop_timer.start(function(){
       answer_ukolovka()
     }, 1500);
   } else if (window.location.href.includes("/pexeso")) {
@@ -447,7 +447,7 @@ if (window.location.hostname.includes("www.umime")) {
     document.getElementById("sstop_slider").attributes.min.value = "50" 
 
     // loop
-    window.timer.start(function(){
+    window.sstop_timer.start(function(){
       answer_pexeso()
     }, 1500);
   } else if (window.location.href.includes("/otazky")) {
@@ -455,7 +455,7 @@ if (window.location.hostname.includes("www.umime")) {
     // run for the first time
     answer_otazky()
     // loop
-    window.timer.start(function(){
+    window.sstop_timer.start(function(){
       answer_otazky()
     }, 1500);
   } else if (window.location.href.includes("/rozrazovacka")) {
@@ -464,7 +464,7 @@ if (window.location.hostname.includes("www.umime")) {
     answer_rozrazovacka()
     // loop
     try {
-      window.timer.start(function(){
+      window.sstop_timer.start(function(){
         answer_rozrazovacka()
       }, 1500);
     } catch (error) {}
