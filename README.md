@@ -1,4 +1,4 @@
-[![CodeFactor](https://user-images.githubusercontent.com/60501493/173180235-809fa83a-5bcf-4707-a079-dde00ca01349.svg)](#/)
+[![CodeFactor](https://www.codefactor.io/repository/github/MP3Martin/umimeto-solver/badge)](#/)
 [<img src="https://img.shields.io/github/license/MP3Martin/umimeto-solver">](#/)
 [<img src="https://img.shields.io/github/stars/MP3Martin/umimeto-solver">](#/)
 [<img src="https://img.shields.io/github/forks/MP3Martin/umimeto-solver">](#/)
