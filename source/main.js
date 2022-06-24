@@ -183,8 +183,7 @@ window.sstop = function() {
 
 window.sstop_btn = function() {
   //remove elements
-  document.getElementById("sstop").remove();
-  document.getElementById("sstop_style").remove();
+  window.sstop_rm()
 
   //stop timer
   sstop();
@@ -194,6 +193,12 @@ window.sstop_btn = function() {
   window.sstop_alert = null;
   window.sstop_btn = null;
   window.sstop = null;
+}
+
+window.sstop_rm = function() {
+  //remove elements
+  document.getElementById("sstop").remove();
+  document.getElementById("sstop_style").remove();
 }
 
 window.addEventListener('resize', resized);
@@ -467,10 +472,12 @@ if (window.location.hostname.includes("www.umime")) {
       }, 1500);
     } catch (error) {}
   } else {
+    window.sstop_rm()
     sstop_alert("This exercise is not supported!")
     window.sstop_btn()
   }
 } else {
+  window.sstop_rm()
   sstop_alert("This website is not supported!")
   window.sstop_btn()
 }
