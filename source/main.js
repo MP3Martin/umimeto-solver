@@ -545,7 +545,7 @@ if (window.location.hostname.includes("www.umime")) {
     window.sstop_timer.start(function(){
       answer_mluvene_diktaty()
     }, 1500);
-  } else if (window.location.href.includes("/krok-po-kroku") || window.location.href.includes("/chat")) {
+  } else if (window.location.href.includes("/krok-po-kroku") || window.location.href.includes("/chat") || window.location.href.includes("/odvozovani")) {
     console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
     // run for the first time
     answer_krok_po_kroku()
