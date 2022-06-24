@@ -196,9 +196,11 @@ window.sstop_btn = function() {
 }
 
 window.sstop_rm = function() {
-  //remove elements
-  document.getElementById("sstop").remove();
-  document.getElementById("sstop_style").remove();
+  try {
+    //remove elements
+    document.getElementById("sstop").remove();
+    document.getElementById("sstop_style").remove();
+  } catch (error) {}
 }
 
 window.addEventListener('resize', resized);
