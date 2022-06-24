@@ -43,6 +43,7 @@ function range(t,e,n){null==e&&(e=t||0,t=0),n||(n=e<t?-1:1);for(var o=Math.max(M
 * rozřazovačka
 * roboti
 * mluvené diktáty
+* krok po kroku
 
 <br>
 
