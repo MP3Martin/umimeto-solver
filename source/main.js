@@ -442,6 +442,7 @@ function answer_krok_po_kroku() {
       }
       console.log("Correct answer: "  + parseInt(correct_answer + 1))
       document.getElementById("option" + correct_answer).click()
+      window.scrollTo(0, document.body.scrollHeight);
     }
    } catch (error) {}
 }
