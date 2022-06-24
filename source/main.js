@@ -402,6 +402,32 @@ function answer_roboti() {
    } catch (error) {}
 }
 
+function answer_mluvene_diktaty() {
+  var correct_answer = -1
+   try {
+      window.setInterval(function() {
+        try {
+          if (document.getElementsByClassName("audio")[0].childNodes[0]) {
+            document.getElementsByClassName("audio")[0].childNodes[0].remove()
+          } else if (document.getElementsByClassName("audio")[1].childNodes[0]) {
+            document.getElementsByClassName("audio")[1].childNodes[0].remove()
+          }
+        } catch (error) {}
+      }, 1);
+
+      if (document.getElementsByClassName("tlacitko large primary nextItem").length > 0) {
+        document.getElementsByClassName("tlacitko large primary nextItem")[0].click()        
+      } else if (document.getElementById("finalBoard").style.display != "none") {
+        document.getElementById("startTyping").click()
+      } else {
+        console.log("Correct answer: "  + window.sentence)
+        document.getElementById("sentence").value = window.sentence
+        document.getElementById("evaluate").click()
+        document.getElementById("nextSentence").click()
+      }
+   } catch (error) {}
+}
+
 //check if the website is supported
 if (window.location.hostname.includes("www.umime")) {
   let ulr_ex_type = window.location.pathname.split("/")[1]
@@ -492,6 +518,14 @@ if (window.location.hostname.includes("www.umime")) {
     // loop
     window.sstop_timer.start(function(){
       answer_roboti()
+    }, 1500);
+  } else if (window.location.href.includes("/mluvene-diktaty")) {
+    console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
+    // run for the first time
+    answer_mluvene_diktaty()
+    // loop
+    window.sstop_timer.start(function(){
+      answer_mluvene_diktaty()
     }, 1500);
   } else {
     window.sstop_rm()
