@@ -196,9 +196,7 @@ window.sstop_btn = function() {
   window.sstop = null;
 }
 
-$(window).resize(function () {
-  resized()
-});
+window.addEventListener('resize', resized);
 
 resized();
 
