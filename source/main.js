@@ -305,19 +305,23 @@ function answer_hadanky() {
 
 function answer_diktat() {
   var correct_answer = ""
-  var el
+  var el = ""
    try {
     for (i of range($("[answered]").length)) {
       if ($("[answered]")[i].attributes.answered.value === "0") {
         el = $("[answered]")[i].childNodes[1]
+        $("[answered]")[i].attributes.answered.value = "1" 
         break
       }
     }
 
-    if (el.childNodes[0].attributes.correct.value === "1") {
-      clickVariant($(el.childNodes[0]));
-    } else if (el.childNodes[1].attributes.correct.value === "1") {
-      clickVariant($(el.childNodes[1]));
+    // if element exists
+    if (el) {
+      if (el.childNodes[0].attributes.correct.value === "1") {
+        clickVariant($(el.childNodes[0]));
+      } else if (el.childNodes[1].attributes.correct.value === "1") {
+        clickVariant($(el.childNodes[1]));
+      }
     }
     
     //
