@@ -633,7 +633,7 @@ if (window.location.hostname.includes("www.umime")) {
     // run for the first time
     answer_diktat()
 
-    document.getElementById("sstop_slider").attributes.min.value = "50" 
+    document.getElementById("sstop_slider").attributes.min.value = "50"
 
     // loop
     window.sstop_timer.start(function(){
