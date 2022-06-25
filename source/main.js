@@ -505,6 +505,29 @@ function answer_presouvani() {
    } catch (error) {}
 }
 
+function answer_carky() {
+  var correct_answer = -1
+   try {
+    gaps = []
+    for (i of range(1000)) {
+      if (document.getElementById("gap" + i)) {
+        gaps.push(document.getElementById("gap" + i))
+      }
+    }
+
+    for (gap of gaps) {
+      if (gap.attributes.correct.value == "1") {
+        gap.click()
+      }
+    }
+
+    document.getElementById("evaluate").click()
+    setTimeout(function (){
+      nextSentence();
+    }, 200);
+   } catch (error) {}
+}
+
 //check if the website is supported
 if (window.location.hostname.includes("www.umime")) {
   let ulr_ex_type = window.location.pathname.split("/")[1]
@@ -627,6 +650,14 @@ if (window.location.hostname.includes("www.umime")) {
     // loop
     window.sstop_timer.start(function(){
       answer_presouvani()
+    }, 1500);
+  } else if (window.location.href.includes("/psani-carek") || window.location.href.includes("/carky") || window.location.href.includes("/carek")) {
+    console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
+    // run for the first time
+    answer_carky()
+    // loop
+    window.sstop_timer.start(function(){
+      answer_carky()
     }, 1500);
   } else {
     window.sstop_rm()
