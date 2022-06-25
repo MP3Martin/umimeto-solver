@@ -63,7 +63,7 @@ window.sstop_alert = function(message) {
 }
 
 // create stop button
-document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px;'></div>"
+document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px; padding-right:4px;'></div>"
 document.body.innerHTML += `
 <style id="sstop_style">
 #sstop_button {
@@ -178,10 +178,14 @@ document.body.innerHTML += `
 `
 stop_div = document.getElementById("sstop")
 stop_div.innerHTML = ""
-stop_div.innerHTML += "<button type='button' style='position: relative;' id='sstop_button' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button>"
-stop_div.innerHTML += "<br>"
 
-stop_div.innerHTML += '<div style="position: absolute;" id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"></div>'
+stop_div.innerHTML += "<div id='sstop_wrapper' style='position:static; margin:0;'></div>"
+sstop_wrapper = document.getElementById("sstop_wrapper")
+
+sstop_wrapper.innerHTML += "<button type='button' style='position: relative;' id='sstop_button' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button>"
+sstop_wrapper.innerHTML += "<br>"
+
+sstop_wrapper.innerHTML += '<div style="position: absolute;" id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"></div>'
 document.getElementById("sstop_slider_div").innerHTML += '<input onchange="window.sstop_timer.set_interval(this.value);" id="sstop_slider" type="range" min="300" max="5000" value="1500" style="position: absolute;">'
 
 window.sstop = function() {
