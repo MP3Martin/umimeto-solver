@@ -3,6 +3,14 @@ if (window.sstop_timer) {
   window.sstop_btn();
 }
 
+window.toNodeList = function(arrayOfNodes){
+  var fragment = document.createDocumentFragment();
+  arrayOfNodes.forEach(function(item){
+    fragment.appendChild(item.cloneNode());
+  });
+  return fragment.childNodes;
+};
+
 window.sstop_timer = {
   running: false,
   iv: 5000,
@@ -193,6 +201,8 @@ window.sstop_btn = function() {
   window.sstop_alert = null;
   window.sstop_btn = null;
   window.sstop = null;
+  window.toNodeList = null;
+  window.sstop_rm = null;
 }
 
 window.sstop_rm = function() {
@@ -448,6 +458,42 @@ function answer_krok_po_kroku() {
    } catch (error) {}
 }
 
+function answer_rozbory() {
+
+  var correct_answer = -1
+   try {
+    if (finished == "1") {
+      nextSentence();
+    } else {
+      // get the chunks of the sentence
+      unfiltered_chunks = Array.prototype.slice.call(document.getElementById("sentence").childNodes)
+      filtered_chunks = Array.prototype.slice.call(unfiltered_chunks)
+      filtered_chunks.splice(0, unfiltered_chunks.length)
+      for (i in range(document.getElementById("sentence").childNodes.length)) {
+        nodeName = Array.from(document.getElementById("sentence").childNodes)[i].nodeName
+        if (nodeName === "SPAN" || nodeName === "DIV") {
+          filtered_chunks.push(unfiltered_chunks[i])
+        }
+      }
+
+      for (marker of document.getElementById("markers").childNodes) {
+        marker.click()
+
+        chunk_i = 0
+        for (chunk of filtered_chunks) {
+          if (correctCategories[chunk_i] === marker.attributes.category.value) {
+            chunk.click()
+          }
+          chunk_i += 1
+        }
+      }
+
+      // finished marking
+      document.getElementById("evaluate").click()
+    }
+   } catch (error) {}
+}
+
 //check if the website is supported
 if (window.location.hostname.includes("www.umime")) {
   let ulr_ex_type = window.location.pathname.split("/")[1]
@@ -554,6 +600,14 @@ if (window.location.hostname.includes("www.umime")) {
     // loop
     window.sstop_timer.start(function(){
       answer_krok_po_kroku()
+    }, 1500);
+  } else if (window.location.href.includes("/rozbory") || window.location.href.includes("/tvorba_slov")) {
+    console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
+    // run for the first time
+    answer_rozbory()
+    // loop
+    window.sstop_timer.start(function(){
+      answer_rozbory()
     }, 1500);
   } else {
     window.sstop_rm()
