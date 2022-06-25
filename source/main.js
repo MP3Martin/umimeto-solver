@@ -328,6 +328,7 @@ function answer_diktat() {
 
     if (window.finished === 1) {
       nextDictate();
+      window.finished = 0
     }
    } catch (error) {}
 }
