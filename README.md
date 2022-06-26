@@ -26,7 +26,6 @@ javascript:(function () { var script = document.createElement('script'); script.
 
 *Tip: to run the code faster, type `javascript:` in the adress bar and paste the code after and press enter. **This faster way only works in Chrome! This method can be used to run the code on the phone.***
 
-<br>
 
 ### Supported exercise types
 * rozhodovačka
