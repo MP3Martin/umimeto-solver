@@ -75,7 +75,7 @@ if (window.$) {
           <ul class="nav">
               <li><div style="padding-top: 1px;"><button type='button' style='position: relative; margin: 5px auto auto; display: block;' id='sstop_button' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button></div></li>
               <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input onchange="window.sstop_timer.set_interval(this.value);" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="5000" value="1500"></div></li>
-              <!-- <li><a class="cur-default" href="#"><i>* nothing here *</i></a></li> -->
+              <!-- <li><a class="cur-default" href="javascript:void(0)"><i>* nothing here *</i></a></li> -->
           </ul>
       </div>
   </div>
@@ -83,7 +83,7 @@ if (window.$) {
       <div class="head-slide">Additional Settings</div>
       <div class="body-slide">
           <ul class="nav">
-              <li><a class="cur-default" href="#">Currently none :(</a></li>
+              <li><a class="cur-default" href="javascript:void(0)">Currently none :(</a></li>
           </ul>
       </div>
   </div>
