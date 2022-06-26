@@ -124,9 +124,11 @@ if (window.$) {
       }
     }
 
-    // reload pause menu
-    window.sstop_pause_btn(document.getElementById("sstop_pause_button"))
-    window.sstop_pause_btn(document.getElementById("sstop_pause_button"))
+    try {
+      // reload pause menu
+      window.sstop_pause_btn(document.getElementById("sstop_pause_button"))
+      window.sstop_pause_btn(document.getElementById("sstop_pause_button"))
+    } catch (e) {}
 
   };
 
