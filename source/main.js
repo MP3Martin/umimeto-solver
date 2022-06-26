@@ -98,7 +98,7 @@ if (window.$) {
     return;
   } );
 
-  LoadCSS('https://rawcdn.githack.com/MP3Martin/public-assets/82d5f47019ac611352115d062efb40f5903da248/js/jquery-slide-menu/jquery-slide-menu.css?min=1').then( function() {
+  LoadCSS('https://mp3martin.github.io/umimeto-solver/assets/jquery-slide-menu/jquery-slide-menu.css').then( function() {
     // do stuff
     return;
   } );
@@ -130,7 +130,7 @@ if (window.$) {
 
   };
 
-  slide_menu_script.src = "https://rawcdn.githack.com/MP3Martin/public-assets/82d5f47019ac611352115d062efb40f5903da248/js/jquery-slide-menu/jquery-slide-menu.js?min=1";
+  slide_menu_script.src = "https://mp3martin.github.io/umimeto-solver/assets/jquery-slide-menu/jquery-slide-menu.js";
   // slide_menu_script.src = "https://raw.githack.com/MP3Martin/public-assets/master/js/jquery-slide-menu/jquery-slide-menu.js?min=1";
 
   slide_menu_script.classList.add("sstop-trash")
