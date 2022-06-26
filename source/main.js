@@ -40,7 +40,9 @@ if (window.$) {
         this.start(false, iv);
     }
   };
-    
+  
+  window.sstop_paused = false;
+
   function range(start, stop, step) {
     if (stop == null) {
       stop = start || 0;
@@ -74,8 +76,9 @@ if (window.$) {
       <div class="body-slide">
           <ul class="nav">
               <li><div style="padding-top: 1px;"><button type='button' style='position: relative; margin: 5px auto auto; display: block;' id='sstop_button' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button></div></li>
-              <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input onchange="window.sstop_timer.set_interval(this.value);" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="5000" value="1500"></div></li>
-              <!-- <li><a class="cur-default" href="javascript:void(0)"><i>* nothing here *</i></a></li> -->
+              <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input onchange="1!=window.sstop_paused&&window.sstop_timer.set_interval(this.value);" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="4000" value="1500"></div></li>
+              <li><div><button type='button' style='position: relative; margin: 5px auto auto; display: block; height: 1.5rem;' id='sstop_pause_button' onclick='window.sstop_pause_btn(this)'><i class="fa fa-pause hv-black"></i></button></div></li>
+              <li><p style="text-align: center; text-align: center; display: grid;" class="cur-default" ><i style="font-size: 0.78rem;" id="sstop_status">(playing)</i></p></li>
           </ul>
       </div>
   </div>
@@ -121,6 +124,10 @@ if (window.$) {
       }
     }
 
+    // reload pause menu
+    window.sstop_pause_btn(document.getElementById("sstop_pause_button"))
+    window.sstop_pause_btn(document.getElementById("sstop_pause_button"))
+
   };
 
   slide_menu_script.src = "https://rawcdn.githack.com/MP3Martin/public-assets/82d5f47019ac611352115d062efb40f5903da248/js/jquery-slide-menu/jquery-slide-menu.js?min=1";
@@ -129,6 +136,28 @@ if (window.$) {
   slide_menu_script.classList.add("sstop-trash")
 
   document.head.appendChild(slide_menu_script); //or something of the likes
+  
+  window.sstop_pause_btn = function(el){
+    if(window.sstop_paused) {
+      window.sstop_paused = false;
+      document.getElementById("sstop_slider").onchange() 
+      $(el).css({"background-color":"orange", "transition":"background-color 0.2s ease-out"});
+      $(el.childNodes[0]).addClass('fa-pause');
+      $(el.childNodes[0]).removeClass('fa-play');
+
+    document.getElementById("sstop_status").innerText = "(running)"
+    document.getElementById("sstop_status").style.color = "darkgreen"
+    } else {
+      window.sstop_paused = true;
+      sstop_timer.set_interval(2147483647)
+      $(el).css({"background-color":"greenyellow", "transition":"background-color 0.2s ease-out"});
+      $(el.childNodes[0]).removeClass('fa-pause');
+      $(el.childNodes[0]).addClass('fa-play');
+
+      document.getElementById("sstop_status").innerText = "(paused)"
+      document.getElementById("sstop_status").style.color = "orange"
+    }
+  }
 
   // create stop button
   document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px; padding-right:4px;'></div>"
@@ -161,6 +190,24 @@ if (window.$) {
     transform: scaleX(-1);
     filter: FlipH;
     -ms-filter: "FlipH";
+}
+
+#sstop_pause_button {
+  color: #00000;
+  background-color: orange;
+  font-size: 19px;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer
+}
+
+#sstop_pause_button:hover {
+  color: #000000;
+}
+
+.hv-black:hover {
+  color: #000000 !important;
+  background-color: revert !important;
 }
     
 /* setup tooltips */
@@ -266,7 +313,7 @@ if (window.$) {
   // sstop_wrapper.innerHTML += "<br>"
 
   // sstop_wrapper.innerHTML += '<div style="position: absolute;" id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"></div>'
-  // document.getElementById("sstop_slider_div").innerHTML += '<input onchange="window.sstop_timer.set_interval(this.value);" id="sstop_slider" type="range" min="300" max="5000" value="1500" style="position: absolute;">'
+  // document.getElementById("sstop_slider_div").innerHTML += '<input onchange="1!=window.sstop_paused&&window.sstop_timer.set_interval(this.value);" id="sstop_slider" type="range" min="300" max="5000" value="1500" style="position: absolute;">'
 
   window.sstop = function() {
     window.sstop_timer.stop();
@@ -288,6 +335,7 @@ if (window.$) {
     window.toNodeList = null;
     window.sstop_rm = null;
     window.LoadCSS = null;
+    window.sstop_paused = null;
   }
 
   window.sstop_rm = function() {
