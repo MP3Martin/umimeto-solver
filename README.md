@@ -896,7 +896,8 @@ if (window.$) {
 </details>
 
 
-## Example
+# Examples
+### Videos
 <details>
   <summary><strong>Click to see the video</strong></summary>
 	
@@ -904,6 +905,8 @@ https://user-images.githubusercontent.com/60501493/173131436-96fed050-b999-46ea-
 
 </details>
 
+### Screenshots
+<img width="700wv" src="https://user-images.githubusercontent.com/60501493/175824401-e20804e2-0132-472e-bef2-fe1b4ffbfd86.png"></img>
 
 # Contributing
 * You can create a pull request to merge your fork of this project
