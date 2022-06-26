@@ -4,7 +4,7 @@ if (window.$) {
     window.sstop_btn();
   }
 
-  function LoadCSS(e){return new Promise((function(n,o){var t=document.createElement("link");t.rel="stylesheet",t.href=e,document.head.appendChild(t),t.onload=function(){n(),void(0)}}))}
+  function LoadCSS(e){return new Promise((function(n,t){var o=document.createElement("link");o.rel="stylesheet",o.href=e,o.classList.add("sstop-trash"),document.head.appendChild(o),o.onload=function(){n()}}))}
 
   window.toNodeList = function(arrayOfNodes){
     var fragment = document.createDocumentFragment();
@@ -73,7 +73,7 @@ if (window.$) {
       <div class="head-slide">Main Settings</div>
       <div class="body-slide">
           <ul class="nav">
-              <li><button type='button' style='position: relative;' id='sstop_button' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button></li>
+              <li><div style="padding-top: 1px;"><button type='button' style='position: relative; margin: 5px auto auto; display: block;' id='sstop_button' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button></div></li>
               <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input onchange="window.sstop_timer.set_interval(this.value);" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="5000" value="1500"></div></li>
               <!-- <li><a class="cur-default" href="#"><i>* nothing here *</i></a></li> -->
           </ul>
@@ -95,7 +95,7 @@ if (window.$) {
     return;
   } );
 
-  LoadCSS('https://cdn.jsdelivr.net/gh/mp3martin/public-assets/js/jquery-slide-menu/jquery-slide-menu.css').then( function() {
+  LoadCSS('https://raw.githack.com/MP3Martin/public-assets/master/js/jquery-slide-menu/jquery-slide-menu.css').then( function() {
     // do stuff
     return;
   } );
@@ -111,6 +111,7 @@ if (window.$) {
 
     // add special style to settings options
     for (nav of Array.prototype.slice.call(document.getElementsByClassName("nav"))) {
+      nav.innerHTML += '<li><p class="cur-default nav-no-hover" ><i><br></i></p></li>'
       for (li of Array.prototype.slice.call($(nav).children())) {
         el = li.childNodes[0]
 
@@ -124,6 +125,8 @@ if (window.$) {
 
   slide_menu_script.src = "https://raw.githack.com/MP3Martin/public-assets/master/js/jquery-slide-menu/jquery-slide-menu.js?min=1";
   // slide_menu_script.src = "https://raw.githack.com/MP3Martin/public-assets/master/js/jquery-slide-menu/jquery-slide-menu.js?min=1";
+
+  slide_menu_script.classList.add("sstop-trash")
 
   document.head.appendChild(slide_menu_script); //or something of the likes
 
@@ -163,6 +166,7 @@ if (window.$) {
 /* setup tooltips */
   .tooltip {
     position: relative;
+    z-index: 99 !important;
   }
   .tooltip:before,
   .tooltip:after {
@@ -173,7 +177,8 @@ if (window.$) {
   }
   .tooltip:after {
     border-right: 6px solid transparent;
-    border-bottom: 6px solid rgba(0,0,0,.75); 
+    border-bottom: 6px solid rgba(51,74,62,.90);
+    z-index: 99 !important;
     border-left: 6px solid transparent;
     content: '';
     height: 0;
@@ -182,9 +187,10 @@ if (window.$) {
     width: 0;
   }
   .tooltip:before {
-    background: rgba(0,0,0,.75);
+    background: rgba(51,74,62,.90);
     border-radius: 2px;
     color: #fff;
+    font-weight: bold;
     content: attr(data-title);
     font-size: 14px;
     padding: 6px 10px;
@@ -244,6 +250,10 @@ if (window.$) {
     cursor: default;
   }
 
+  .nav-no-hover {
+    background: #CCC !important;
+  }
+
 </style>
 `
   stop_div = document.getElementById("sstop")
@@ -277,6 +287,7 @@ if (window.$) {
     window.sstop = null;
     window.toNodeList = null;
     window.sstop_rm = null;
+    window.LoadCSS = null;
   }
 
   window.sstop_rm = function() {
@@ -285,6 +296,11 @@ if (window.$) {
       document.getElementById("sstop").remove();
       document.getElementById("sstop_style").remove();
       document.getElementsByClassName("nav-slide")[0].remove()
+      for (i in range(3)) {
+        for (trash of document.getElementsByClassName("sstop-trash")) {
+          trash.remove()
+        }
+      }
     } catch (error) {}
   }
 
