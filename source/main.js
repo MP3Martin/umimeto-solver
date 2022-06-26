@@ -140,7 +140,9 @@ if (window.$) {
   window.sstop_pause_btn = function(el){
     if(window.sstop_paused) {
       window.sstop_paused = false;
-      document.getElementById("sstop_slider").onchange() 
+      try {
+        document.getElementById("sstop_slider").onchange()
+      } catch(e) {}
       $(el).css({"background-color":"orange", "transition":"background-color 0.2s ease-out"});
       $(el.childNodes[0]).addClass('fa-pause');
       $(el.childNodes[0]).removeClass('fa-play');
@@ -149,7 +151,9 @@ if (window.$) {
     document.getElementById("sstop_status").style.color = "darkgreen"
     } else {
       window.sstop_paused = true;
-      sstop_timer.set_interval(2147483647)
+      try {
+        sstop_timer.set_interval(2147483647)
+      } catch(e) {}
       $(el).css({"background-color":"greenyellow", "transition":"background-color 0.2s ease-out"});
       $(el.childNodes[0]).removeClass('fa-pause');
       $(el.childNodes[0]).addClass('fa-play');
