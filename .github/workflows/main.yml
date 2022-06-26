@@ -76,6 +76,9 @@ jobs:
           git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
           git push origin $TARGET_BRANCH # push to remote branch
       
+      - name: select branch 2
+        run: git checkout main
+      
       - name: copy2
         env:
           SRC_FOLDER_PATH: 'assets'
