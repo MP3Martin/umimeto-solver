@@ -158,7 +158,7 @@ if (window.$) {
   }, 300)
 
   // automatically update sstop_slider html values
-  window.slider_interval = setInterval(function(){
+  window.sstop_slider_interval = setInterval(function(){
     $("#sstop_slider").attr("min", (2000 - window.sstop_slider.min) * -1);
     $("#sstop_slider").attr("max", 0);
   }, 1);
@@ -378,7 +378,8 @@ if (window.$) {
 
     window.sstop_slider = null;
     window.sstop_info_text = null;
-    clearInterval(window.slider_interval);
+    clearInterval(window.sstop_slider_interval);
+    window.sstop_slider_interval = null;
   }
 
   window.sstop_rm = function() {
