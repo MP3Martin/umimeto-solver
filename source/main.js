@@ -164,12 +164,23 @@ if (window.$) {
   }, 1);
 
   // create info text
-  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; bottom:0; right:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>"
+  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>"
   document.getElementById("sstop_info_text").innerHTML += "<p'> </p>"
+
+  // prepare info text animation
+  $("#sstop_info_text").css('transition', 'transform 300ms ease-out')
+  $("#sstop_info_text").css('transform', 'scale(1)')
+  // $("#sstop_info_text").css('left', Number(Number(document.getElementById("sstop_info_text").offsetWidth + 1) * -1) + 'px')
 
   window.sstop_info_text = {
     "show" : function() {
-      $("#sstop_info_text").show()
+      // $("#sstop_info_text").css('transition', 'none')
+      $("#sstop_info_text").css('transform', 'scale(1.5)')
+      // $("#sstop_info_text").css('left', Number(Number(document.getElementById("sstop_info_text").offsetWidth + 1) * -1) + 'px')
+      $("#sstop_info_text").fadeIn()
+      setTimeout(function () {
+        $("#sstop_info_text").css('transform', 'scale(1)')
+      }, 10)
     },
 
     "hide" : function() {
