@@ -76,7 +76,7 @@ if (window.$) {
       <div class="body-slide">
           <ul class="nav">
               <li><div style="padding-top: 1px;"><button type='button' style='position: relative; margin: 5px auto auto; display: block;' id='sstop_button' class='tooltip fade' data-title='Completely remove the solver' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button></div></li>
-              <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input oninput="1!=window.sstop_paused&&window.sstop_timer.set_interval(window.sstop_slider.value());" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="4000" value="-700"></div></li>
+              <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input onmouseover="sstop_info_text.show(); sstop_info_text.set(sstop_slider.value() +' ms')" onmouseleave="sstop_info_text.hide()" oninput="sstop_info_text.set(sstop_slider.value() +' ms'); if (!window.sstop_paused) {window.sstop_timer.set_interval(window.sstop_slider.value());}" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="4000" value="-700"></div></li>
               <li><div><button type='button' style='position: relative; margin: 5px auto auto; display: block; height: 1.5rem;' id='sstop_pause_button' onclick='window.sstop_pause_btn(this)'><i class="fa fa-pause hv-black"></i></button></div></li>
               <li><p style="text-align: center; text-align: center; display: grid;" class="cur-default" ><i style="font-size: 0.78rem;" id="sstop_status">(playing)</i></p></li>
           </ul>
@@ -143,23 +143,45 @@ if (window.$) {
 
   window.sstop_slider = {
     "value" : function() {
-      var output = Math.abs($("#sstop_slider").val());
+      var output = (Math.abs($("#sstop_slider").val())) + window.sstop_slider.min;
       return output;
     },
 
     "min" : 300
   }
   
-  $("#sstop_slider").attr("min", (($("#sstop_slider").attr("max") - window.sstop_slider.min) * -1));
-  $("#sstop_slider").attr("max", 0);
+  // $("#sstop_slider").attr("min", (($("#sstop_slider").attr("max") - window.sstop_slider.min) * -1));
+  // $("#sstop_slider").attr("max", 0);
+
+  setTimeout(function () {
+    $("#sstop_slider").attr("value", Number($("#sstop_slider").attr("value")) + window.sstop_slider.min);
+  }, 100)
 
   // automatically update sstop_slider html values
   setInterval(function(){
-    $("#sstop_slider").attr("min", (4000) * -1);
-    $("#sstop_slider").attr("max", window.sstop_slider.min);
+    $("#sstop_slider").attr("min", (2000 - window.sstop_slider.min) * -1);
+    $("#sstop_slider").attr("max", 0);
   }, 1);
 
+  // create info text
+  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; bottom:0; right:0; margin:5px; padding-right:4px; height: 1rem; opacity: 50%;'></div>"
+  document.getElementById("sstop_info_text").innerHTML += "<p'> </p>"
 
+  window.sstop_info_text = {
+    "show" : function() {
+      $("#sstop_info_text").show()
+    },
+
+    "hide" : function() {
+      $("#sstop_info_text").hide()
+    },
+
+    "set" : function(text) {
+      document.getElementById("sstop_info_text").innerText = text;
+    },
+  }
+
+  sstop_info_text.hide()
 
   window.sstop_pause_btn = function(el){
     if(window.sstop_paused) {
@@ -355,6 +377,7 @@ if (window.$) {
     window.sstop_paused = null;
 
     window.sstop_slider = null;
+    window.sstop_info_text = null;
   }
 
   window.sstop_rm = function() {
