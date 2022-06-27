@@ -155,7 +155,7 @@ if (window.$) {
 
   setTimeout(function () {
     $("#sstop_slider").attr("value", Number($("#sstop_slider").attr("value")) + window.sstop_slider.min);
-  }, 100)
+  }, 300)
 
   // automatically update sstop_slider html values
   window.slider_interval = setInterval(function(){
