@@ -164,7 +164,7 @@ if (window.$) {
   }, 1);
 
   // create info text
-  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; bottom:0; right:0; margin:5px; padding-right:4px; height: 1rem; opacity: 70%;'></div>"
+  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; bottom:0; right:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>"
   document.getElementById("sstop_info_text").innerHTML += "<p'> </p>"
 
   window.sstop_info_text = {
