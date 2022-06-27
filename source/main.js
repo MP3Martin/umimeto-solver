@@ -164,8 +164,8 @@ if (window.$) {
   }, 1);
 
   // create info text
-  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>"
-  document.getElementById("sstop_info_text").innerHTML += "<p'> </p>"
+  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; font-size: 1.3rem; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>"
+  document.getElementById("sstop_info_text").innerHTML += "<p> </p>"
 
   // prepare info text animation
   $("#sstop_info_text").css('transition', 'transform 300ms ease-out')
