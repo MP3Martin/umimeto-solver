@@ -177,6 +177,7 @@ if (window.$) {
       // $("#sstop_info_text").css('transition', 'none')
       $("#sstop_info_text").css('transform', 'scale(1.5)')
       // $("#sstop_info_text").css('left', Number(Number(document.getElementById("sstop_info_text").offsetWidth + 1) * -1) + 'px')
+      // $("#sstop_info_text").effect("highlight", {}, 1000);
       $("#sstop_info_text").fadeIn()
       setTimeout(function () {
         $("#sstop_info_text").css('transform', 'scale(1)')
@@ -184,15 +185,21 @@ if (window.$) {
     },
 
     "hide" : function() {
-      $("#sstop_info_text").hide()
+      $("#sstop_info_text").fadeOut(400)
+      setTimeout(function () {
+        $("#sstop_info_text").hide()
+      }, 400)
     },
 
     "set" : function(text) {
       document.getElementById("sstop_info_text").innerText = text;
+      if (Math.floor(Math.random() * 9) == 5) {
+        $("#sstop_info_text").effect( "shake", {times:1, distance:1, direction:"up"}, 100)
+      }
     },
   }
 
-  sstop_info_text.hide()
+  $("#sstop_info_text").hide()
 
   window.sstop_pause_btn = function(el){
     if(window.sstop_paused) {
