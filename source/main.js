@@ -185,10 +185,10 @@ if (window.$) {
     },
 
     "hide" : function() {
-      $("#sstop_info_text").fadeOut(400)
+      $("#sstop_info_text").fadeOut(200)
       setTimeout(function () {
         $("#sstop_info_text").hide()
-      }, 400)
+      }, 200)
     },
 
     "set" : function(text) {
