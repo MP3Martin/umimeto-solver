@@ -76,7 +76,7 @@ if (window.$) {
       <div class="body-slide">
           <ul class="nav">
               <li><div style="padding-top: 1px;"><button type='button' style='position: relative; margin: 5px auto auto; display: block;' id='sstop_button' class='tooltip fade' data-title='Completely remove the solver' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button></div></li>
-              <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input onchange="1!=window.sstop_paused&&window.sstop_timer.set_interval(this.value);" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="4000" value="1500"></div></li>
+              <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input onchange="1!=window.sstop_paused&&window.sstop_timer.set_interval(window.sstop_slider.value());" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="4000" value="-700"></div></li>
               <li><div><button type='button' style='position: relative; margin: 5px auto auto; display: block; height: 1.5rem;' id='sstop_pause_button' onclick='window.sstop_pause_btn(this)'><i class="fa fa-pause hv-black"></i></button></div></li>
               <li><p style="text-align: center; text-align: center; display: grid;" class="cur-default" ><i style="font-size: 0.78rem;" id="sstop_status">(playing)</i></p></li>
           </ul>
@@ -139,6 +139,28 @@ if (window.$) {
 
   document.head.appendChild(slide_menu_script); //or something of the likes
   
+
+
+  window.sstop_slider = {
+    "value" : function() {
+      var output = Math.abs($("#sstop_slider").val());
+      return output;
+    },
+
+    "min" : 300
+  }
+  
+  $("#sstop_slider").attr("min", (($("#sstop_slider").attr("max") - window.sstop_slider.min) * -1));
+  $("#sstop_slider").attr("max", 0);
+
+  // automatically update sstop_slider html values
+  setInterval(function(){
+    $("#sstop_slider").attr("min", (4000) * -1);
+    $("#sstop_slider").attr("max", window.sstop_slider.min);
+  }, 1);
+
+
+
   window.sstop_pause_btn = function(el){
     if(window.sstop_paused) {
       window.sstop_paused = false;
@@ -184,18 +206,7 @@ if (window.$) {
 }
     
 #sstop_slider {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-
-    -moz-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-    filter: FlipH;
-    -ms-filter: "FlipH";
+    /* */
 }
 
 #sstop_pause_button {
@@ -342,6 +353,8 @@ if (window.$) {
     window.sstop_rm = null;
     window.LoadCSS = null;
     window.sstop_paused = null;
+
+    window.sstop_slider = null;
   }
 
   window.sstop_rm = function() {
@@ -718,7 +731,7 @@ if (window.$) {
       // run for the first time
       answer_diktat()
 
-      document.getElementById("sstop_slider").attributes.min.value = "50"
+      window.sstop_slider.min = 50;
 
       // loop
       window.sstop_timer.start(function(){
@@ -737,7 +750,7 @@ if (window.$) {
       // run for the first time
       answer_pexeso()
 
-      document.getElementById("sstop_slider").attributes.min.value = "50" 
+      window.sstop_slider.min = 50;
 
       // loop
       window.sstop_timer.start(function(){
