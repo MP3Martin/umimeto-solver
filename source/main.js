@@ -196,6 +196,9 @@ if (window.$) {
       if (Math.floor(Math.random() * 9) == 5) {
         $("#sstop_info_text").effect( "shake", {times:1, distance:1, direction:"up"}, 100)
       }
+      if ($("#sstop_info_text").is(":hidden")) {
+        window.sstop_info_text.show()
+      }
     },
   }
 
