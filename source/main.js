@@ -4,6 +4,9 @@ if (window.$) {
     window.sstop_btn();
   }
 
+  document.body.innerHTML += '<script type="text/javascript" class="sstop-trash" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"><\/script>'
+  document.body.innerHTML += "<style class='sstop-trash'> @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap'); </style>"
+
   function LoadCSS(e){return new Promise((function(n,t){var o=document.createElement("link");o.rel="stylesheet",o.href=e,o.classList.add("sstop-trash"),document.head.appendChild(o),o.onload=function(){n()}}))}
 
   window.toNodeList = function(arrayOfNodes){
@@ -76,7 +79,7 @@ if (window.$) {
       <div class="body-slide">
           <ul class="nav">
               <li><div style="padding-top: 1px;"><button type='button' style='position: relative; margin: 5px auto auto; display: block;' id='sstop_button' class='tooltip fade' data-title='Completely remove the solver' onclick='window.sstop_btn()'>STOP<br>ANSWERING</button></div></li>
-              <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input onmouseover="sstop_info_text.show(); sstop_info_text.set(sstop_slider.value() +' ms')" onmouseleave="sstop_info_text.hide()" oninput="sstop_info_text.set(sstop_slider.value() +' ms'); if (!window.sstop_paused) {window.sstop_timer.set_interval(window.sstop_slider.value());}" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="4000" value="-700"></div></li>
+              <li><div id="sstop_slider_div" class="tooltip fade" data-title="Answering speed"><input onmouseover="sstop_fs_info_text.show();" onmouseleave="sstop_fs_info_text.hide()" oninput="sstop_fs_info_text.set(&quot;'The answering delay is ' + sstop_slider.value() + ' ms'&quot;); if (!window.sstop_paused) {window.sstop_timer.set_interval(window.sstop_slider.value());}" id="sstop_slider" style="margin: 5px auto auto; display: block;" type="range" min="300" max="4000" value="-700"></div></li>
               <li><div><button type='button' style='position: relative; margin: 5px auto auto; display: block; height: 1.5rem;' id='sstop_pause_button' onclick='window.sstop_pause_btn(this)'><i class="fa fa-pause hv-black"></i></button></div></li>
               <li><p style="text-align: center; text-align: center; display: grid;" class="cur-default" ><i style="font-size: 0.78rem;" id="sstop_status">(playing)</i></p></li>
           </ul>
@@ -111,6 +114,32 @@ if (window.$) {
       speedUD: 300,
       expand: true
     });
+
+    setTimeout(function () {
+      var sstop_slider_scroll = document.getElementById("sstop_slider");
+      sstop_slider_scroll.addEventListener("wheel", function(e){
+        if (e.deltaY < 0){
+          this.valueAsNumber += 100;
+        }else{
+          this.value -= 100;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        this.oninput()
+      })
+
+      sstop_slider_scroll.addEventListener("mousedown", function(event){
+        if (event.button == 1 || event.buttons == 4) {
+          this.value = -700 + window.sstop_slider.min;
+        }
+      })
+    
+      sstop_slider_scroll = null;
+    }, 100)
+    
+    setTimeout(function () {
+      $("#sstop_slider").attr("value", Number($("#sstop_slider").attr("value")) + window.sstop_slider.min);
+    }, 100)
 
     // add special style to settings options
     for (nav of Array.prototype.slice.call(document.getElementsByClassName("nav"))) {
@@ -149,19 +178,16 @@ if (window.$) {
 
     "min" : 300
   }
-  
+
+
   // $("#sstop_slider").attr("min", (($("#sstop_slider").attr("max") - window.sstop_slider.min) * -1));
   // $("#sstop_slider").attr("max", 0);
-
-  setTimeout(function () {
-    $("#sstop_slider").attr("value", Number($("#sstop_slider").attr("value")) + window.sstop_slider.min);
-  }, 300)
 
   // automatically update sstop_slider html values
   window.sstop_slider_interval = setInterval(function(){
     $("#sstop_slider").attr("min", (2000 - window.sstop_slider.min) * -1);
     $("#sstop_slider").attr("max", 0);
-  }, 1);
+  }, 10);
 
   // create info text
   document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; font-size: 1.3rem; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>"
@@ -229,6 +255,66 @@ if (window.$) {
       document.getElementById("sstop_status").style.color = "orange"
     }
   }
+
+
+  document.body.innerHTML += '<script id="sstop_vendor_prefixes_script" src="https://cdnjs.cloudflare.com/ajax/libs/css3finalize/4.0.1/jquery.css3finalize.min.js"></script>'
+
+
+  // create fs info text
+  document.body.innerHTML += "<div id='sstop_fs_info_text' style='pointer-events: none; background-color: rgba(0, 0, 0, 0.15); position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999999999;'></div>"
+  document.getElementById("sstop_fs_info_text").innerHTML += "<h1 style='margin: 0; padding: 0; text-align: center; font-family: Share Tech Mono, monospace; position: fixed; top: 45%; left: 0; right: 0; margin-top: -7vh; font-size: calc((3vw + 3vh) * 0.7); color: rgba(166, 230, 212, 0.96); text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black, -0.03em -0.03em black, -0.03em 0.03em black, 0.03em -0.03em black, 0.03em 0.03em black, 3px 3px 8px rgba(0,0,0,0.99), rgba(0, 0, 0, 0.99) 2px 2px 8px;'>Hello World</h1>"
+
+  // -- prepare animation --
+  // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transition', 'transform 300ms ease-out')
+  // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1)')
+  $($("#sstop_fs_info_text")[0].childNodes[0]).hide()
+
+  window.sstop_fs_info_text = {
+    "show" : function() {
+      $($("#sstop_fs_info_text")[0].childNodes[0]).promise().done(function(){
+        $($("#sstop_fs_info_text")[0].childNodes[0]).css("top", "45%")
+        // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1.5)')
+        $($("#sstop_fs_info_text")[0].childNodes[0]).show()
+        $($("#sstop_fs_info_text")[0].childNodes[0]).animate({
+          top: "+=5%",
+          opacity: 1,
+        }, 300, function() { /* Animation complete. */ });
+
+        setTimeout(function () {
+          // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1)')
+        }, 10)
+
+        $("#sstop_fs_info_text").fadeIn({duration:400,easing:"swing"})
+      });
+    },
+
+    "hide" : function() {
+      $($("#sstop_fs_info_text")[0].childNodes[0]).promise().done(function(){
+        $($("#sstop_fs_info_text")[0].childNodes[0]).animate({
+          top: "+=5%",
+          opacity: 0,
+          }, 300, function() {
+            setTimeout(function () {
+              $($("#sstop_fs_info_text")[0].childNodes[0]).css("top", "45%")
+          }, 10) });
+
+        $("#sstop_fs_info_text").fadeOut({duration:400,easing:"swing"})
+      });
+    },
+
+    "set" : function(text) {
+      sstop_fs_info_text.text = text;
+    },
+
+    "text" : "'Loading...'",
+  }
+
+  $("#sstop_fs_info_text").hide()
+
+  window.sstop_fs_info_text_interval = setInterval(function(){
+    $($("#sstop_fs_info_text")[0].childNodes[0])[0].innerText = eval(window.sstop_fs_info_text.text);
+  }, 10);
+
 
   // create stop button
   document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px; padding-right:4px;'></div>"
@@ -400,7 +486,9 @@ if (window.$) {
     window.sstop_slider = null;
     window.sstop_info_text = null;
     clearInterval(window.sstop_slider_interval);
+    clearInterval(window.sstop_fs_info_text_interval)
     window.sstop_slider_interval = null;
+    window.sstop_fs_info_text = null;
   }
 
   window.sstop_rm = function() {
@@ -408,8 +496,11 @@ if (window.$) {
       //remove elements
       document.getElementById("sstop").remove();
       document.getElementById("sstop_style").remove();
+      document.getElementById("sstop_vendor_prefixes_script").remove();
       document.getElementsByClassName("nav-slide")[0].remove()
-      for (i in range(3)) {
+      document.getElementById("sstop_info_text").remove();
+      document.getElementById("sstop_fs_info_text").remove();
+      for (i in range(20)) {
         for (trash of document.getElementsByClassName("sstop-trash")) {
           trash.remove()
         }
