@@ -117,28 +117,34 @@ if (window.$) {
 
     setTimeout(function () {
       var sstop_slider_scroll = document.getElementById("sstop_slider");
-      sstop_slider_scroll.addEventListener("wheel", function(e){
-        if (e.deltaY < 0){
-          this.valueAsNumber += 100;
-        }else{
-          this.value -= 100;
-        }
-        e.preventDefault();
-        e.stopPropagation();
-        this.oninput()
-      })
+      try {
+        sstop_slider_scroll.addEventListener("wheel", function(e){
+          if (e.deltaY < 0){
+            this.valueAsNumber += 100;
+          }else{
+            this.value -= 100;
+          }
+          e.preventDefault();
+          e.stopPropagation();
+          this.oninput()
+        })
+      } catch (e) {}
 
-      sstop_slider_scroll.addEventListener("mousedown", function(event){
-        if (event.button == 1 || event.buttons == 4) {
-          this.value = -700 + window.sstop_slider.min;
-        }
-      })
+      try {
+        sstop_slider_scroll.addEventListener("mousedown", function(event){
+          if (event.button == 1 || event.buttons == 4) {
+            this.value = -700 + window.sstop_slider.min;
+          }
+        })
+      } catch (e) {}
     
       sstop_slider_scroll = null;
     }, 100)
     
     setTimeout(function () {
-      $("#sstop_slider").attr("value", Number($("#sstop_slider").attr("value")) + window.sstop_slider.min);
+      try {
+        $("#sstop_slider").attr("value", Number($("#sstop_slider").attr("value")) + window.sstop_slider.min);
+      } catch (e) {}
     }, 100)
 
     // add special style to settings options
