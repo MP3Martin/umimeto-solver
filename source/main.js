@@ -834,6 +834,27 @@ if (window.$) {
     } catch (error) {}
   }
 
+  function answer_zavody_v_psani() {
+    var correct_answer = -1
+    try {
+      if (finished == "1" || itemOffset == "-1") {
+        // nothing, the game ended or hasn't started
+      } else {
+        $("#answer").val(items[itemOffset]);
+        $('#answer').unbind("input")
+        setTimeout(function (){
+          $('#answer').on("input", function() {
+            evaluate();
+          });
+        } , 1);
+        setTimeout(function (){
+          $("#answer")[0].dispatchEvent(new Event('input', { bubbles: true }));
+        } , 3);
+        console.log("Correct answer: "  + items[itemOffset]);
+      }
+    } catch (error) {console.error(error)}
+  }
+
   //check if the website is supported
   if (window.location.hostname.includes("www.umime")) {
     let ulr_ex_type = window.location.pathname.split("/")[1]
@@ -844,6 +865,17 @@ if (window.$) {
       // loop
       window.sstop_timer.start(function(){
         answer_twoOp()
+      }, 1500);
+    } else if (window.location.href.includes("?p=zavodyPsani")) {
+      console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")
+      // run for the first time
+      answer_zavody_v_psani()
+
+      // window.sstop_slider.min = 50;
+
+      // loop
+      window.sstop_timer.start(function(){
+        answer_zavody_v_psani()
       }, 1500);
     } else if (window.location.href.includes("?p=zavody") || window.location.href.includes("?p=tymovka")) {
       console.log("\n\nSource code: https://github.com/MP3Martin/umimeto-solver")

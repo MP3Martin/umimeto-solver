@@ -46,6 +46,7 @@ javascript:(function () { var script = document.createElement('script'); script.
 * tvorba slov
 * přesouvání
 * čárky
+* závody v psaní
 
 <br>
 
