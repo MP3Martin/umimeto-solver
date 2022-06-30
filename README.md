@@ -1065,7 +1065,8 @@ https://user-images.githubusercontent.com/60501493/173131436-96fed050-b999-46ea-
 </details>
 
 ### Screenshots
-<img width="700wv" src="https://user-images.githubusercontent.com/60501493/175824401-e20804e2-0132-472e-bef2-fe1b4ffbfd86.png"></img>
+
+<img width="800wv" src="https://user-images.githubusercontent.com/60501493/176704999-c00f5053-ee79-45ae-ade1-a165bb74955e.png"></img>
 
 # Contributing
 * You can create a pull request to merge your fork of this project
