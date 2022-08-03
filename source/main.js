@@ -4,6 +4,40 @@ if (window.$) {
     window.sstop_btn();
   }
 
+  window.sstop_hide_temp_key = "P".charCodeAt(0);
+  window.sstop_hide_temp_key_selecting = false;
+  window.sstop_hide_temp_key_selecting_allowed = true;
+
+  window.update_sstop_hide_temp_key = function(){
+    // if the user is selecting the new key
+    if (sstop_hide_temp_key_selecting) {
+      $("#select_keybind").text("PRESS KEY...")
+      $("#select_keybind").parent().css({"margin-bottom": ""})
+      $("#select_keybind_moreinfo").hide()
+    } else {
+      charcode = window.sstop_hide_temp_key
+      string = String.fromCharCode(charcode)
+      if (charcode == 13) {
+        string = "[ENTER]"
+      } else if (charcode == " ".charCodeAt(0)) {
+        string = "[SPACE]"
+      }
+
+      $("#select_keybind").text(string)
+      $("#select_keybind_moreinfo").show()
+
+      if (string.length > 1) {
+        $("#select_keybind_moreinfo").children(":first").children(":first").css({"padding-left": "4.5rem", "width": "max-content", "display": "inline-block", "padding-top": "0.7rem"})
+        // $($("#select_keybind")[0].parentNode.parentNode).css({"padding-bottom":""})
+        $("#select_keybind").parent().css({"margin-bottom": "-1rem"})
+      } else {
+        $($("#select_keybind_moreinfo")[0].children[0].children[0]).css({"padding-left": "", "width": "", "display": "", "padding-top": ""})        
+        // $($("#select_keybind")[0].parentNode.parentNode).css({"padding-bottom":"7px"})
+        $("#select_keybind").parent().css({"margin-bottom": ""})
+      }
+    }
+  }
+
   document.body.innerHTML += '<script type="text/javascript" class="sstop-trash" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"><\/script>'
   document.body.innerHTML += "<style class='sstop-trash'> @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap'); </style>"
 
@@ -89,7 +123,19 @@ if (window.$) {
       <div class="head-slide">Additional Settings</div>
       <div class="body-slide">
           <ul class="nav">
-              <li><a class="cur-default" href="javascript:void(0)">Currently none :(</a></li>
+              <li style="padding-bottom: 7px;">
+                <div style="padding-top: 5px; margin: 5px auto auto; display: block; padding-left: 5px;">
+                  <span style="font-size: 0.9rem;color: #34495e;font-weight: 510;">Key to temporarily hide the menu: </span>
+                  <button data-title="Use this keybind when you quicky need to completely hide the menu" id="select_keybind" class="tooltip fade bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" style="">
+                    P
+                  </button>
+                  <div id="select_keybind_moreinfo" style="display: inline-flex;">
+                    <div style="display: block; width: 4rem; height: 1.5rem; line-height: 1em;position: relative;top: -0.5rem;">
+                      <span style="font-size: 0.8rem;color: #34495e; opacity: 0.6;">(click to change)</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
           </ul>
       </div>
   </div>
@@ -144,6 +190,78 @@ if (window.$) {
     setTimeout(function () {
       try {
         $("#sstop_slider").attr("value", Number($("#sstop_slider").attr("value")) + window.sstop_slider.min);
+        $($("p .cur-default, .nav-no-hover").slice(-1)[0]).css({"margin-bottom":"3px", "margin-top": "5px"})
+
+        $(window).on('keypress', function(event) {
+          key = String.fromCharCode(event.keyCode).toUpperCase().charCodeAt(0)
+          // if the user is not typing into text input box
+          if (!$("input[type=text]").is(':focus')) {
+            // if we are waiting for a new keybind to be set
+            if (sstop_hide_temp_key_selecting) {
+              event.preventDefault();
+
+              sstop_hide_temp_key = key
+              sstop_hide_temp_key_selecting = false;
+              window.update_sstop_hide_temp_key()
+
+              if (String.fromCharCode(key) === " ") {
+                // $("#select_keybind").click()
+                // window.sstop_hide_temp_key_selecting = false;
+                // window.update_sstop_hide_temp_key()
+
+              }
+            } else {
+              // console.log(key)
+              // console.log(sstop_hide_temp_key)
+              if (key === sstop_hide_temp_key) {
+                event.preventDefault();
+                if ($(".nav-slide")[0].style.left != "-200px") {
+                  $($(".nav-slide")[0]).toggle(150)
+                } else {
+                  $($(".nav-slide")[0]).toggle({effect: "fade", duration: 150})
+                }
+              }
+            }
+          }
+        })
+
+        const target51745 = document.querySelector('#select_keybind')
+        document.addEventListener('click', (event) => {
+          key = event.keyCode
+
+          if (sstop_hide_temp_key_selecting_allowed == true) {
+            const withinBoundaries = event.composedPath().includes(target51745)
+
+            if (withinBoundaries) {
+                sstop_hide_temp_key_selecting = !sstop_hide_temp_key_selecting;
+                window.update_sstop_hide_temp_key()
+            } else {
+              sstop_hide_temp_key_selecting = false;
+              window.update_sstop_hide_temp_key()
+            }
+          }
+        })
+
+        document.addEventListener('keydown', (event) => {
+          key = event.key
+          if (key == 'Enter' || key == 'Spacebar' || key == ' ') {
+            sstop_hide_temp_key_selecting_allowed = false
+            // console.log("Keydown: " + key)
+          }
+
+        })
+
+        document.addEventListener('keyup', (event) => {
+          key = event.key
+          if (key == 'Enter' || key == 'Spacebar' || key == ' ') {
+            setTimeout(function(){
+              sstop_hide_temp_key_selecting_allowed = true
+            }, 200)
+            // console.log("Keyup: " + key)
+          }
+
+        })
+
       } catch (e) {}
     }, 100)
 
@@ -153,9 +271,11 @@ if (window.$) {
       for (li of Array.prototype.slice.call($(nav).children())) {
         el = li.childNodes[0]
 
-        el.style.margin = "auto"
-        el.style.display = "block"
-        el.style.marginTop = "5px"
+        try {
+          el.style.margin = "auto"
+          el.style.display = "block"
+          el.style.marginTop = "5px"
+        } catch (e) {}
       }
     }
 
@@ -173,7 +293,24 @@ if (window.$) {
   slide_menu_script.classList.add("sstop-trash")
 
   document.head.appendChild(slide_menu_script); //or something of the likes
-  
+
+  var tailwindcss_script = document.createElement('script');
+  tailwindcss_script.onload = function () {
+    var tailwindcss_script_config = document.createElement('script');
+    tailwindcss_script_config.type = 'text/javascript';
+    tailwindcss_script_config.text = `
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      }
+    }
+    `;
+    tailwindcss_script_config.classList.add("sstop-trash");
+    document.head.appendChild(tailwindcss_script_config);
+  };
+  tailwindcss_script.src = "https://cdn.tailwindcss.com";
+  tailwindcss_script.classList.add("sstop-trash")
+  document.head.appendChild(tailwindcss_script); //or something of the likes
 
 
   window.sstop_slider = {
@@ -275,37 +412,115 @@ if (window.$) {
   // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1)')
   $($("#sstop_fs_info_text")[0].childNodes[0]).hide()
 
+  window.sstop_fs_info_text_delay = null;
+
+  // jQuery.fn.tracking = function () {
+  //   this.data('hovering', false);
+  
+  //   this.hover(function () {
+  //     $(this).data('hovering', true);
+  //   }, function () {
+  //     $(this).data('hovering', false);
+  //   });
+  
+  //   return this;
+  // };
+  
+  // jQuery.fn.hovering = function () {
+  //   return this.data('hovering');
+  // }
+
+  // setTimeout( function(){
+  //   for (var i = 0; i < 3; i++) {
+  //     el = document.getElementsByClassName("nav")[0].children[i]
+  //     $(el).tracking();
+  //     // setTimeout( function(){
+  //     //   $(el).tracking();
+  //     // }, 10);
+  //   }
+  // }, 300);
+
+  window.sstop_slider_distance_x = 0
+  window.sstop_slider_distance_y = 0
+
+  $(document).mousemove(function(event) {  
+      mX = event.pageX;
+      mY = event.pageY;
+      el_distance = measureDistance($("#sstop_slider"), mX, mY);
+      window.sstop_slider_distance_x = el_distance[0];
+      window.sstop_slider_distance_y = el_distance[1];
+      // console.log("x: " + sstop_slider_distance.x + "\n" + "y: " + sstop_slider_distance.y)
+  });
+  function measureDistance(my_element, mouseX, mouseY) {
+    try {
+      x = Math.floor(Math.sqrt(Math.pow(mouseX - (my_element.offset().left+(my_element.width()/2)), 2)));
+      y = Math.floor(Math.sqrt(Math.pow(mouseY - (my_element.offset().top+(my_element.height()/2)), 2)));
+      
+    } catch (e) {return [0, 0]}
+    return [x, y]
+  }
+
   window.sstop_fs_info_text = {
     "show" : function() {
-      $($("#sstop_fs_info_text")[0].childNodes[0]).promise().done(function(){
-        $($("#sstop_fs_info_text")[0].childNodes[0]).css("top", "45%")
-        // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1.5)')
-        $($("#sstop_fs_info_text")[0].childNodes[0]).show()
-        $($("#sstop_fs_info_text")[0].childNodes[0]).animate({
-          top: "+=5%",
-          opacity: 1,
-        }, 300, function() { /* Animation complete. */ });
+      try {
+        if (!sstop_fs_info_text_delay) {
+          $($("#sstop_fs_info_text")[0].childNodes[0]).promise().done(function(){
+            $($("#sstop_fs_info_text")[0].childNodes[0]).css("top", "45%")
+            // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1.5)')
+            $($("#sstop_fs_info_text")[0].childNodes[0]).show()
+            $($("#sstop_fs_info_text")[0].childNodes[0]).animate({
+              top: "+=5%",
+              opacity: 1,
+            }, 300, function() { /* Animation complete. */ });
 
-        setTimeout(function () {
-          // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1)')
-        }, 10)
+            setTimeout(function () {
+              // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1)')
+            }, 10)
 
-        $("#sstop_fs_info_text").fadeIn({duration:400,easing:"swing"})
-      });
+            $("#sstop_fs_info_text").fadeIn({duration:400,easing:"swing"})
+          });
+        }
+      } catch (e) {}
+
+      try {
+        clearTimeout(window.sstop_fs_info_text_delay)
+      } catch(e) {}
     },
 
-    "hide" : function() {
-      $($("#sstop_fs_info_text")[0].childNodes[0]).promise().done(function(){
-        $($("#sstop_fs_info_text")[0].childNodes[0]).animate({
-          top: "+=5%",
-          opacity: 0,
-          }, 300, function() {
-            setTimeout(function () {
-              $($("#sstop_fs_info_text")[0].childNodes[0]).css("top", "45%")
-          }, 10) });
+    "hide" : function(delay = 150) {
+      window.sstop_fs_info_text_delay = setTimeout(function() {
+        try {
+          $($("#sstop_fs_info_text")[0].childNodes[0]).promise().done(function(){
+            try {
+            $($("#sstop_fs_info_text")[0].childNodes[0]).animate({
+              top: "+=5%",
+              opacity: 0,
+              }, 300, function() {
+                setTimeout(function () {
+                  try {
+                    $($("#sstop_fs_info_text")[0].childNodes[0]).css("top", "45%")
+                  } catch (e) {}
+              }, 10) });
+            } catch (e) {}
+    
+            $("#sstop_fs_info_text").fadeOut({duration:400,easing:"swing"})
+          
+          });
+        } catch (e) {}  
 
-        $("#sstop_fs_info_text").fadeOut({duration:400,easing:"swing"})
-      });
+          window.sstop_fs_info_text_delay = null;
+      }, delay);
+
+      // if the cursor is far away from sstop_slider, the sstop_fs_info_text will close without delay
+      setTimeout(function(){
+        if (sstop_fs_info_text_delay) {
+          if (sstop_slider_distance_x >= 80 && sstop_slider_distance_y >= 40) {
+            window.sstop_fs_info_text.hide(0)
+            window.sstop_fs_info_text_delay = null;
+            // console.log("closed faster!  " + Math.random())
+          }
+        }
+      },80)
     },
 
     "set" : function(text) {
@@ -473,6 +688,10 @@ if (window.$) {
   }
 
   window.sstop_btn = function() {
+    try {
+      $(window).unbind("keypress");
+    } catch (e) {}
+
     //remove elements
     window.sstop_rm()
 
@@ -495,6 +714,16 @@ if (window.$) {
     clearInterval(window.sstop_fs_info_text_interval)
     window.sstop_slider_interval = null;
     window.sstop_fs_info_text = null;
+    window.sstop_fs_info_text_delay = null;
+    window.sstop_slider_distance_x = null;
+    window.sstop_slider_distance_y = null;
+    window.sstop_hide_temp_key = null;
+    tailwindcss_script = null;
+    tailwindcss_script_config = null;
+    window.sstop_hide_temp_key_selecting = null;
+    window.update_sstop_hide_temp_key = null;
+    window.sstop_hide_temp_key_selecting_allowed = null;
+    window.tailwind = null;
   }
 
   window.sstop_rm = function() {
