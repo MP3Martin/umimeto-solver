@@ -54,7 +54,7 @@
     display: block;
     padding: 5px 0 5px 10px;
 }
-.nav li *:hover
+.nav li:hover
 {
     text-decoration: none;
     background: #AAA;
