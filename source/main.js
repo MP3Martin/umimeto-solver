@@ -139,6 +139,23 @@ if (window.$) {
           </ul>
       </div>
   </div>
+  <div class="nav-body">
+      <div class="head-slide">Additional Info</div>
+      <div class="body-slide">
+          <ul class="nav">
+              <li style="padding-bottom: 7px;">
+                <p style="display: grid; color: #34495e; margin-bottom: 0; margin: 3px; line-height: 1.2;" class="cur-default">
+                  <span>
+                    • Use scroll wheel when hovering over speed slider to quickly change the speed
+                  </span>
+                  <span style="margin-top: 10px;">
+                    • Press <span style="font-weight:bolder;">SPACE</span> to quickly pause answering
+                  </span>
+                </p>
+              </li>
+          </ul>
+      </div>
+  </div>
 </div>
 `
 
@@ -220,6 +237,9 @@ if (window.$) {
                 } else {
                   $($(".nav-slide")[0]).toggle({effect: "fade", duration: 150})
                 }
+              } else if (key === " ".charCodeAt(0)) {
+                event.preventDefault();
+                document.getElementById("sstop_pause_button").click()
               }
             }
           }
