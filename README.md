@@ -1,22 +1,22 @@
+<!-- ![codefactor_a+](https://user-images.githubusercontent.com/60501493/173180235-809fa83a-5bcf-4707-a079-dde00ca01349.svg) -->
+
+# umimeto-solver
+\- Javascript tool to solve https://umimeto.org for you with a nice GUI. <br>
+
 [![CodeFactor](https://www.codefactor.io/repository/github/MP3Martin/umimeto-solver/badge)](#/)
 [<img src="https://img.shields.io/github/license/MP3Martin/umimeto-solver">](#/)
 [<img src="https://img.shields.io/github/stars/MP3Martin/umimeto-solver">](#/)
 [<img src="https://img.shields.io/github/forks/MP3Martin/umimeto-solver">](#/)
 [<img src="https://img.shields.io/github/issues/MP3Martin/umimeto-solver">](#/)
 
-<!-- ![codefactor_a+](https://user-images.githubusercontent.com/60501493/173180235-809fa83a-5bcf-4707-a079-dde00ca01349.svg) -->
+> **Initial idea from [<img src="https://camo.githubusercontent.com/b079fe922f00c4b86f1b724fbc2e8141c468794ce8adbc9b7456e5e1ad09c622/68747470733a2f2f6564656e742e6769746875622e696f2f537570657254696e7949636f6e732f696d616765732f7376672f6769746875622e737667" alt="gh" width="18"/>](https://github.com/blakkcode/umimecesky-solver) https://github.com/blakkcode/umimecesky-solver** ❤️ <br>
+> **⚠For educational purposes only!⚠**
 
-# umimeto-solver
-╰ Javascript code to solve https://umimeto.org for you <br>
+<br>
 
-**Initial idea from [<img src="https://camo.githubusercontent.com/b079fe922f00c4b86f1b724fbc2e8141c468794ce8adbc9b7456e5e1ad09c622/68747470733a2f2f6564656e742e6769746875622e696f2f537570657254696e7949636f6e732f696d616765732f7376672f6769746875622e737667" alt="gh" width="18"/>](https://github.com/blakkcode/umimecesky-solver) https://github.com/blakkcode/umimecesky-solver** ❤️
-<br> <br>
+🇨🇿 Click **[here](https://github-com.translate.goog/MP3Martin/umimeto-solver?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=cs&_x_tr_pto=wapp)** to see this webpage in Czech language 🇨🇿
 
-**⚠For educational purposes only!⚠**
-<br> <br>
-🇨🇿 Click [**here**](https://github-com.translate.goog/MP3Martin/umimeto-solver?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=cs&_x_tr_pto=wapp) to see this webpage in Czech language 🇨🇿
-
-## Code:
+# Code
 *(paste it into your browser console (`ctrl` + `shift` + `c` and select `console` tab) and press `enter`)*
 
 ```js
@@ -27,6 +27,11 @@ javascript:(function () { var script = document.createElement('script'); script.
 *Tip: to run the code faster, type `javascript:` in the adress bar and paste the code after and press enter. **This faster way only works in Chrome! This method can be used to run the code on the phone.*** <br>
 ***Or you can bookmark this (put it in `URL` field) and click it to start the solver anytime. (should work on every browser)***
 
+
+• [Compressed code](https://github.com/MP3Martin/umimeto-solver/blob/main/source/main.min.js) <br>
+• [Uncompressed code](https://github.com/MP3Martin/umimeto-solver/blob/main/source/main.js)
+
+# Info
 
 ### Supported exercise types
 * rozhodovačka
@@ -47,12 +52,6 @@ javascript:(function () { var script = document.createElement('script'); script.
 * přesouvání
 * čárky
 * závody v psaní
-
-<br>
-
-• [Compressed code](https://github.com/MP3Martin/umimeto-solver/blob/main/source/main.min.js) <br>
-• [Uncompressed code](https://github.com/MP3Martin/umimeto-solver/blob/main/source/main.js)
-
 
 # Examples
 ### Videos
