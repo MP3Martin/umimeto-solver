@@ -1,55 +1,55 @@
 if (window.$) {
   // avoid multiple solvers
   if (window.sstop_timer) {
-    window.sstop_btn()
+    window.sstop_btn();
   }
 
-  window.sstop_hide_temp_key = 'P'.charCodeAt(0)
-  window.sstop_hide_temp_key_selecting = false
-  window.sstop_hide_temp_key_selecting_allowed = true
+  window.sstop_hide_temp_key = 'P'.charCodeAt(0);
+  window.sstop_hide_temp_key_selecting = false;
+  window.sstop_hide_temp_key_selecting_allowed = true;
 
   window.update_sstop_hide_temp_key = function () {
     // if the user is selecting the new key
     if (sstop_hide_temp_key_selecting) {
-      $('#select_keybind').text('PRESS KEY...')
-      $('#select_keybind').parent().css({ 'margin-bottom': '' })
-      $('#select_keybind_moreinfo').hide()
+      $('#select_keybind').text('PRESS KEY...');
+      $('#select_keybind').parent().css({ 'margin-bottom': '' });
+      $('#select_keybind_moreinfo').hide();
     } else {
-      charcode = window.sstop_hide_temp_key
-      string = String.fromCharCode(charcode)
+      charcode = window.sstop_hide_temp_key;
+      string = String.fromCharCode(charcode);
       if (charcode == 13) {
-        string = '[ENTER]'
+        string = '[ENTER]';
       } else if (charcode == ' '.charCodeAt(0)) {
-        string = '[SPACE]'
+        string = '[SPACE]';
       }
 
-      $('#select_keybind').text(string)
-      $('#select_keybind_moreinfo').show()
+      $('#select_keybind').text(string);
+      $('#select_keybind_moreinfo').show();
 
       if (string.length > 1) {
-        $('#select_keybind_moreinfo').children(':first').children(':first').css({ 'padding-left': '4.5rem', width: 'max-content', display: 'inline-block', 'padding-top': '0.7rem' })
+        $('#select_keybind_moreinfo').children(':first').children(':first').css({ 'padding-left': '4.5rem', width: 'max-content', display: 'inline-block', 'padding-top': '0.7rem' });
         // $($("#select_keybind")[0].parentNode.parentNode).css({"padding-bottom":""})
-        $('#select_keybind').parent().css({ 'margin-bottom': '-1rem' })
+        $('#select_keybind').parent().css({ 'margin-bottom': '-1rem' });
       } else {
-        $($('#select_keybind_moreinfo')[0].children[0].children[0]).css({ 'padding-left': '', width: '', display: '', 'padding-top': '' })
+        $($('#select_keybind_moreinfo')[0].children[0].children[0]).css({ 'padding-left': '', width: '', display: '', 'padding-top': '' });
         // $($("#select_keybind")[0].parentNode.parentNode).css({"padding-bottom":"7px"})
-        $('#select_keybind').parent().css({ 'margin-bottom': '' })
+        $('#select_keybind').parent().css({ 'margin-bottom': '' });
       }
     }
-  }
+  };
 
-  document.body.innerHTML += '<script type="text/javascript" class="sstop-trash" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"><\/script>'
-  document.body.innerHTML += "<style class='sstop-trash'> @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap'); </style>"
+  document.body.innerHTML += '<script type="text/javascript" class="sstop-trash" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"><\/script>';
+  document.body.innerHTML += "<style class='sstop-trash'> @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap'); </style>";
 
-  function LoadCSS (e) { return new Promise(function (n, t) { const o = document.createElement('link'); o.rel = 'stylesheet', o.href = e, o.classList.add('sstop-trash'), document.head.appendChild(o), o.onload = function () { n() } }) }
+  function LoadCSS (e) { return new Promise(function (n, t) { const o = document.createElement('link'); o.rel = 'stylesheet', o.href = e, o.classList.add('sstop-trash'), document.head.appendChild(o), o.onload = function () { n(); }; }); }
 
   window.toNodeList = function (arrayOfNodes) {
-    const fragment = document.createDocumentFragment()
+    const fragment = document.createDocumentFragment();
     arrayOfNodes.forEach(function (item) {
-      fragment.appendChild(item.cloneNode())
-    })
-    return fragment.childNodes
-  }
+      fragment.appendChild(item.cloneNode());
+    });
+    return fragment.childNodes;
+  };
 
   window.sstop_timer = {
     running: false,
@@ -57,52 +57,52 @@ if (window.$) {
     timeout: false,
     cb: function () {},
     start: function (cb, iv) {
-      const elm = this
-      clearInterval(this.timeout)
-      this.running = true
-      if (cb) this.cb = cb
-      if (iv) this.iv = iv
-      this.timeout = setTimeout(function () { elm.execute(elm) }, this.iv)
+      const elm = this;
+      clearInterval(this.timeout);
+      this.running = true;
+      if (cb) this.cb = cb;
+      if (iv) this.iv = iv;
+      this.timeout = setTimeout(function () { elm.execute(elm); }, this.iv);
     },
     execute: function (e) {
-      if (!e.running) return false
-      e.cb()
-      e.start()
+      if (!e.running) return false;
+      e.cb();
+      e.start();
     },
     stop: function () {
-      this.running = false
+      this.running = false;
     },
     set_interval: function (iv) {
-      clearInterval(this.timeout)
-      this.start(false, iv)
+      clearInterval(this.timeout);
+      this.start(false, iv);
     }
-  }
+  };
 
-  window.sstop_paused = false
+  window.sstop_paused = false;
 
   function range (start, stop, step) {
     if (stop == null) {
-      stop = start || 0
-      start = 0
+      stop = start || 0;
+      start = 0;
     }
     if (!step) {
-      step = stop < start ? -1 : 1
+      step = stop < start ? -1 : 1;
     }
 
-    const length = Math.max(Math.ceil((stop - start) / step), 0)
-    const range = Array(length)
+    const length = Math.max(Math.ceil((stop - start) / step), 0);
+    const range = Array(length);
 
     for (let idx = 0; idx < length; idx++, start += step) {
-      range[idx] = start
+      range[idx] = start;
     }
 
-    return range
+    return range;
   }
 
   window.sstop_alert = function (message) {
-    console.log('[umimeto-solver]: ' + message)
-    alert('[umimeto-solver]\n\n' + message)
-  }
+    console.log('[umimeto-solver]: ' + message);
+    alert('[umimeto-solver]\n\n' + message);
+  };
 
   // create slide_menu
   document.body.innerHTML += `
@@ -157,68 +157,68 @@ if (window.$) {
       </div>
   </div>
 </div>
-`
+`;
 
   LoadCSS('https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css').then(function () {
     // do stuff
 
-  })
+  });
 
   LoadCSS('https://mp3martin.github.io/umimeto-solver/assets/jquery-slide-menu/jquery-slide-menu.css').then(function () {
     // do stuff
 
-  })
+  });
 
-  const slide_menu_script = document.createElement('script')
+  const slide_menu_script = document.createElement('script');
   slide_menu_script.onload = function () {
     $('.nav-slide').SlideMenu({
       speedLR: 200,
       speedUD: 300,
       expand: true
-    })
+    });
 
     setTimeout(function () {
-      let sstop_slider_scroll = document.getElementById('sstop_slider')
+      let sstop_slider_scroll = document.getElementById('sstop_slider');
       try {
         sstop_slider_scroll.addEventListener('wheel', function (e) {
           if (e.deltaY < 0) {
-            this.valueAsNumber += 100
+            this.valueAsNumber += 100;
           } else {
-            this.value -= 100
+            this.value -= 100;
           }
-          e.preventDefault()
-          e.stopPropagation()
-          this.oninput()
-        })
+          e.preventDefault();
+          e.stopPropagation();
+          this.oninput();
+        });
       } catch (e) {}
 
       try {
         sstop_slider_scroll.addEventListener('mousedown', function (event) {
           if (event.button == 1 || event.buttons == 4) {
-            this.value = -700 + window.sstop_slider.min
+            this.value = -700 + window.sstop_slider.min;
           }
-        })
+        });
       } catch (e) {}
 
-      sstop_slider_scroll = null
-    }, 100)
+      sstop_slider_scroll = null;
+    }, 100);
 
     setTimeout(function () {
       try {
-        $('#sstop_slider').attr('value', Number($('#sstop_slider').attr('value')) + window.sstop_slider.min)
-        $($('p .cur-default, .nav-no-hover').slice(-1)[0]).css({ 'margin-bottom': '3px', 'margin-top': '5px' })
+        $('#sstop_slider').attr('value', Number($('#sstop_slider').attr('value')) + window.sstop_slider.min);
+        $($('p .cur-default, .nav-no-hover').slice(-1)[0]).css({ 'margin-bottom': '3px', 'margin-top': '5px' });
 
         $(window).on('keypress', function (event) {
-          key = String.fromCharCode(event.keyCode).toUpperCase().charCodeAt(0)
+          key = String.fromCharCode(event.keyCode).toUpperCase().charCodeAt(0);
           // if the user is not typing into text input box
           if (!$('input[type=text]').is(':focus')) {
             // if we are waiting for a new keybind to be set
             if (sstop_hide_temp_key_selecting) {
-              event.preventDefault()
+              event.preventDefault();
 
-              sstop_hide_temp_key = key
-              sstop_hide_temp_key_selecting = false
-              window.update_sstop_hide_temp_key()
+              sstop_hide_temp_key = key;
+              sstop_hide_temp_key_selecting = false;
+              window.update_sstop_hide_temp_key();
 
               if (String.fromCharCode(key) === ' ') {
                 // $("#select_keybind").click()
@@ -230,200 +230,200 @@ if (window.$) {
               // console.log(key)
               // console.log(sstop_hide_temp_key)
               if (key === sstop_hide_temp_key) {
-                event.preventDefault()
+                event.preventDefault();
                 if ($('.nav-slide')[0].style.left != '-200px') {
-                  $($('.nav-slide')[0]).toggle(150)
+                  $($('.nav-slide')[0]).toggle(150);
                 } else {
-                  $($('.nav-slide')[0]).toggle({ effect: 'fade', duration: 150 })
+                  $($('.nav-slide')[0]).toggle({ effect: 'fade', duration: 150 });
                 }
               } else if (key === ' '.charCodeAt(0)) {
-                event.preventDefault()
-                document.getElementById('sstop_pause_button').click()
+                event.preventDefault();
+                document.getElementById('sstop_pause_button').click();
               }
             }
           }
-        })
+        });
 
-        const target51745 = document.querySelector('#select_keybind')
+        const target51745 = document.querySelector('#select_keybind');
         document.addEventListener('click', (event) => {
-          key = event.keyCode
+          key = event.keyCode;
 
           if (sstop_hide_temp_key_selecting_allowed == true) {
-            const withinBoundaries = event.composedPath().includes(target51745)
+            const withinBoundaries = event.composedPath().includes(target51745);
 
             if (withinBoundaries) {
-              sstop_hide_temp_key_selecting = !sstop_hide_temp_key_selecting
-              window.update_sstop_hide_temp_key()
+              sstop_hide_temp_key_selecting = !sstop_hide_temp_key_selecting;
+              window.update_sstop_hide_temp_key();
             } else {
-              sstop_hide_temp_key_selecting = false
-              window.update_sstop_hide_temp_key()
+              sstop_hide_temp_key_selecting = false;
+              window.update_sstop_hide_temp_key();
             }
           }
-        })
+        });
 
         document.addEventListener('keydown', (event) => {
-          key = event.key
+          key = event.key;
           if (key == 'Enter' || key == 'Spacebar' || key == ' ') {
-            sstop_hide_temp_key_selecting_allowed = false
+            sstop_hide_temp_key_selecting_allowed = false;
             // console.log("Keydown: " + key)
           }
-        })
+        });
 
         document.addEventListener('keyup', (event) => {
-          key = event.key
+          key = event.key;
           if (key == 'Enter' || key == 'Spacebar' || key == ' ') {
             setTimeout(function () {
-              sstop_hide_temp_key_selecting_allowed = true
-            }, 200)
+              sstop_hide_temp_key_selecting_allowed = true;
+            }, 200);
             // console.log("Keyup: " + key)
           }
-        })
+        });
       } catch (e) {}
-    }, 100)
+    }, 100);
 
     // add special style to settings options
     for (nav of Array.prototype.slice.call(document.getElementsByClassName('nav'))) {
-      nav.innerHTML += '<li><p class="cur-default nav-no-hover" ><i><br></i></p></li>'
+      nav.innerHTML += '<li><p class="cur-default nav-no-hover" ><i><br></i></p></li>';
       for (li of Array.prototype.slice.call($(nav).children())) {
-        el = li.childNodes[0]
+        el = li.childNodes[0];
 
         try {
-          el.style.margin = 'auto'
-          el.style.display = 'block'
-          el.style.marginTop = '5px'
+          el.style.margin = 'auto';
+          el.style.display = 'block';
+          el.style.marginTop = '5px';
         } catch (e) {}
       }
     }
 
     try {
       // reload pause menu
-      window.sstop_pause_btn(document.getElementById('sstop_pause_button'))
-      window.sstop_pause_btn(document.getElementById('sstop_pause_button'))
+      window.sstop_pause_btn(document.getElementById('sstop_pause_button'));
+      window.sstop_pause_btn(document.getElementById('sstop_pause_button'));
     } catch (e) {}
-  }
+  };
 
-  slide_menu_script.src = 'https://mp3martin.github.io/umimeto-solver/assets/jquery-slide-menu/jquery-slide-menu.js'
+  slide_menu_script.src = 'https://mp3martin.github.io/umimeto-solver/assets/jquery-slide-menu/jquery-slide-menu.js';
   // slide_menu_script.src = "https://raw.githack.com/MP3Martin/public-assets/master/js/jquery-slide-menu/jquery-slide-menu.js?min=1";
 
-  slide_menu_script.classList.add('sstop-trash')
+  slide_menu_script.classList.add('sstop-trash');
 
-  document.head.appendChild(slide_menu_script) // or something of the likes
+  document.head.appendChild(slide_menu_script); // or something of the likes
 
-  let tailwindcss_script = document.createElement('script')
+  let tailwindcss_script = document.createElement('script');
   tailwindcss_script.onload = function () {
-    const tailwindcss_script_config = document.createElement('script')
-    tailwindcss_script_config.type = 'text/javascript'
+    const tailwindcss_script_config = document.createElement('script');
+    tailwindcss_script_config.type = 'text/javascript';
     tailwindcss_script_config.text = `
     tailwind.config = {
       corePlugins: {
         preflight: false,
       }
     }
-    `
-    tailwindcss_script_config.classList.add('sstop-trash')
-    document.head.appendChild(tailwindcss_script_config)
-  }
-  tailwindcss_script.src = 'https://cdn.tailwindcss.com'
-  tailwindcss_script.classList.add('sstop-trash')
-  document.head.appendChild(tailwindcss_script) // or something of the likes
+    `;
+    tailwindcss_script_config.classList.add('sstop-trash');
+    document.head.appendChild(tailwindcss_script_config);
+  };
+  tailwindcss_script.src = 'https://cdn.tailwindcss.com';
+  tailwindcss_script.classList.add('sstop-trash');
+  document.head.appendChild(tailwindcss_script); // or something of the likes
 
   window.sstop_slider = {
     value: function () {
-      const output = (Math.abs($('#sstop_slider').val())) + window.sstop_slider.min
-      return output
+      const output = (Math.abs($('#sstop_slider').val())) + window.sstop_slider.min;
+      return output;
     },
 
     min: 300
-  }
+  };
 
   // $("#sstop_slider").attr("min", (($("#sstop_slider").attr("max") - window.sstop_slider.min) * -1));
   // $("#sstop_slider").attr("max", 0);
 
   // automatically update sstop_slider html values
   window.sstop_slider_interval = setInterval(function () {
-    $('#sstop_slider').attr('min', (2000 - window.sstop_slider.min) * -1)
-    $('#sstop_slider').attr('max', 0)
-  }, 10)
+    $('#sstop_slider').attr('min', (2000 - window.sstop_slider.min) * -1);
+    $('#sstop_slider').attr('max', 0);
+  }, 10);
 
   // create info text
-  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; font-size: 1.3rem; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>"
-  document.getElementById('sstop_info_text').innerHTML += '<p> </p>'
+  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; font-size: 1.3rem; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>";
+  document.getElementById('sstop_info_text').innerHTML += '<p> </p>';
 
   // prepare info text animation
-  $('#sstop_info_text').css('transition', 'transform 300ms ease-out')
-  $('#sstop_info_text').css('transform', 'scale(1)')
+  $('#sstop_info_text').css('transition', 'transform 300ms ease-out');
+  $('#sstop_info_text').css('transform', 'scale(1)');
   // $("#sstop_info_text").css('left', Number(Number(document.getElementById("sstop_info_text").offsetWidth + 1) * -1) + 'px')
 
   window.sstop_info_text = {
     show: function () {
       // $("#sstop_info_text").css('transition', 'none')
-      $('#sstop_info_text').css('transform', 'scale(1.5)')
+      $('#sstop_info_text').css('transform', 'scale(1.5)');
       // $("#sstop_info_text").css('left', Number(Number(document.getElementById("sstop_info_text").offsetWidth + 1) * -1) + 'px')
       // $("#sstop_info_text").effect("highlight", {}, 1000);
-      $('#sstop_info_text').fadeIn()
+      $('#sstop_info_text').fadeIn();
       setTimeout(function () {
-        $('#sstop_info_text').css('transform', 'scale(1)')
-      }, 10)
+        $('#sstop_info_text').css('transform', 'scale(1)');
+      }, 10);
     },
 
     hide: function () {
-      $('#sstop_info_text').fadeOut(200)
+      $('#sstop_info_text').fadeOut(200);
       setTimeout(function () {
-        $('#sstop_info_text').hide()
-      }, 200)
+        $('#sstop_info_text').hide();
+      }, 200);
     },
 
     set: function (text) {
-      document.getElementById('sstop_info_text').innerText = text
+      document.getElementById('sstop_info_text').innerText = text;
       if (Math.floor(Math.random() * 9) == 5) {
-        $('#sstop_info_text').effect('shake', { times: 1, distance: 1, direction: 'up' }, 100)
+        $('#sstop_info_text').effect('shake', { times: 1, distance: 1, direction: 'up' }, 100);
       }
       // if ($("#sstop_info_text").is(":hidden")) {
       //   window.sstop_info_text.show()
       // }
     }
-  }
+  };
 
-  $('#sstop_info_text').hide()
+  $('#sstop_info_text').hide();
 
   window.sstop_pause_btn = function (el) {
     if (window.sstop_paused) {
-      window.sstop_paused = false
+      window.sstop_paused = false;
       try {
-        document.getElementById('sstop_slider').oninput()
+        document.getElementById('sstop_slider').oninput();
       } catch (e) {}
-      $(el).css({ 'background-color': 'orange', transition: 'background-color 0.2s ease-out' })
-      $(el.childNodes[0]).addClass('fa-pause')
-      $(el.childNodes[0]).removeClass('fa-play')
+      $(el).css({ 'background-color': 'orange', transition: 'background-color 0.2s ease-out' });
+      $(el.childNodes[0]).addClass('fa-pause');
+      $(el.childNodes[0]).removeClass('fa-play');
 
-      document.getElementById('sstop_status').innerText = '(running)'
-      document.getElementById('sstop_status').style.color = 'darkgreen'
+      document.getElementById('sstop_status').innerText = '(running)';
+      document.getElementById('sstop_status').style.color = 'darkgreen';
     } else {
-      window.sstop_paused = true
+      window.sstop_paused = true;
       try {
-        sstop_timer.set_interval(2147483647)
+        sstop_timer.set_interval(2147483647);
       } catch (e) {}
-      $(el).css({ 'background-color': 'greenyellow', transition: 'background-color 0.2s ease-out' })
-      $(el.childNodes[0]).removeClass('fa-pause')
-      $(el.childNodes[0]).addClass('fa-play')
+      $(el).css({ 'background-color': 'greenyellow', transition: 'background-color 0.2s ease-out' });
+      $(el.childNodes[0]).removeClass('fa-pause');
+      $(el.childNodes[0]).addClass('fa-play');
 
-      document.getElementById('sstop_status').innerText = '(paused)'
-      document.getElementById('sstop_status').style.color = 'orange'
+      document.getElementById('sstop_status').innerText = '(paused)';
+      document.getElementById('sstop_status').style.color = 'orange';
     }
-  }
+  };
 
-  document.body.innerHTML += '<script id="sstop_vendor_prefixes_script" src="https://cdnjs.cloudflare.com/ajax/libs/css3finalize/4.0.1/jquery.css3finalize.min.js"></script>'
+  document.body.innerHTML += '<script id="sstop_vendor_prefixes_script" src="https://cdnjs.cloudflare.com/ajax/libs/css3finalize/4.0.1/jquery.css3finalize.min.js"></script>';
 
   // create fs info text
-  document.body.innerHTML += "<div id='sstop_fs_info_text' style='pointer-events: none; background-color: rgba(0, 0, 0, 0.15); position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999999999;'></div>"
-  document.getElementById('sstop_fs_info_text').innerHTML += "<h1 style='margin: 0; padding: 0; text-align: center; font-family: Share Tech Mono, monospace; position: fixed; top: 45%; left: 0; right: 0; margin-top: -7vh; font-size: calc((3vw + 3vh) * 0.7); color: rgba(166, 230, 212, 0.96); text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black, -0.03em -0.03em black, -0.03em 0.03em black, 0.03em -0.03em black, 0.03em 0.03em black, 3px 3px 8px rgba(0,0,0,0.99), rgba(0, 0, 0, 0.99) 2px 2px 8px;'>Hello World</h1>"
+  document.body.innerHTML += "<div id='sstop_fs_info_text' style='pointer-events: none; background-color: rgba(0, 0, 0, 0.15); position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999999999;'></div>";
+  document.getElementById('sstop_fs_info_text').innerHTML += "<h1 style='margin: 0; padding: 0; text-align: center; font-family: Share Tech Mono, monospace; position: fixed; top: 45%; left: 0; right: 0; margin-top: -7vh; font-size: calc((3vw + 3vh) * 0.7); color: rgba(166, 230, 212, 0.96); text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black, -0.03em -0.03em black, -0.03em 0.03em black, 0.03em -0.03em black, 0.03em 0.03em black, 3px 3px 8px rgba(0,0,0,0.99), rgba(0, 0, 0, 0.99) 2px 2px 8px;'>Hello World</h1>";
 
   // -- prepare animation --
   // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transition', 'transform 300ms ease-out')
   // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1)')
-  $($('#sstop_fs_info_text')[0].childNodes[0]).hide()
+  $($('#sstop_fs_info_text')[0].childNodes[0]).hide();
 
-  window.sstop_fs_info_text_delay = null
+  window.sstop_fs_info_text_delay = null;
 
   // jQuery.fn.tracking = function () {
   //   this.data('hovering', false);
@@ -451,23 +451,23 @@ if (window.$) {
   //   }
   // }, 300);
 
-  window.sstop_slider_distance_x = 0
-  window.sstop_slider_distance_y = 0
+  window.sstop_slider_distance_x = 0;
+  window.sstop_slider_distance_y = 0;
 
   $(document).mousemove(function (event) {
-    mX = event.pageX
-    mY = event.pageY
-    el_distance = measureDistance($('#sstop_slider'), mX, mY)
-    window.sstop_slider_distance_x = el_distance[0]
-    window.sstop_slider_distance_y = el_distance[1]
+    mX = event.pageX;
+    mY = event.pageY;
+    el_distance = measureDistance($('#sstop_slider'), mX, mY);
+    window.sstop_slider_distance_x = el_distance[0];
+    window.sstop_slider_distance_y = el_distance[1];
     // console.log("x: " + sstop_slider_distance.x + "\n" + "y: " + sstop_slider_distance.y)
-  })
+  });
   function measureDistance (my_element, mouseX, mouseY) {
     try {
-      x = Math.floor(Math.sqrt(Math.pow(mouseX - (my_element.offset().left + (my_element.width() / 2)), 2)))
-      y = Math.floor(Math.sqrt(Math.pow(mouseY - (my_element.offset().top + (my_element.height() / 2)), 2)))
-    } catch (e) { return [0, 0] }
-    return [x, y]
+      x = Math.floor(Math.sqrt(Math.pow(mouseX - (my_element.offset().left + (my_element.width() / 2)), 2)));
+      y = Math.floor(Math.sqrt(Math.pow(mouseY - (my_element.offset().top + (my_element.height() / 2)), 2)));
+    } catch (e) { return [0, 0]; }
+    return [x, y];
   }
 
   window.sstop_fs_info_text = {
@@ -475,25 +475,25 @@ if (window.$) {
       try {
         if (!sstop_fs_info_text_delay) {
           $($('#sstop_fs_info_text')[0].childNodes[0]).promise().done(function () {
-            $($('#sstop_fs_info_text')[0].childNodes[0]).css('top', '45%')
+            $($('#sstop_fs_info_text')[0].childNodes[0]).css('top', '45%');
             // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1.5)')
-            $($('#sstop_fs_info_text')[0].childNodes[0]).show()
+            $($('#sstop_fs_info_text')[0].childNodes[0]).show();
             $($('#sstop_fs_info_text')[0].childNodes[0]).animate({
               top: '+=5%',
               opacity: 1
-            }, 300, function () { /* Animation complete. */ })
+            }, 300, function () { /* Animation complete. */ });
 
             setTimeout(function () {
               // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transform', 'scale(1)')
-            }, 10)
+            }, 10);
 
-            $('#sstop_fs_info_text').fadeIn({ duration: 400, easing: 'swing' })
-          })
+            $('#sstop_fs_info_text').fadeIn({ duration: 400, easing: 'swing' });
+          });
         }
       } catch (e) {}
 
       try {
-        clearTimeout(window.sstop_fs_info_text_delay)
+        clearTimeout(window.sstop_fs_info_text_delay);
       } catch (e) {}
     },
 
@@ -508,46 +508,46 @@ if (window.$) {
               }, 300, function () {
                 setTimeout(function () {
                   try {
-                    $($('#sstop_fs_info_text')[0].childNodes[0]).css('top', '45%')
+                    $($('#sstop_fs_info_text')[0].childNodes[0]).css('top', '45%');
                   } catch (e) {}
-                }, 10)
-              })
+                }, 10);
+              });
             } catch (e) {}
 
-            $('#sstop_fs_info_text').fadeOut({ duration: 400, easing: 'swing' })
-          })
+            $('#sstop_fs_info_text').fadeOut({ duration: 400, easing: 'swing' });
+          });
         } catch (e) {}
 
-        window.sstop_fs_info_text_delay = null
-      }, delay)
+        window.sstop_fs_info_text_delay = null;
+      }, delay);
 
       // if the cursor is far away from sstop_slider, the sstop_fs_info_text will close without delay
       setTimeout(function () {
         if (sstop_fs_info_text_delay) {
           if (sstop_slider_distance_x >= 80 && sstop_slider_distance_y >= 40) {
-            window.sstop_fs_info_text.hide(0)
-            window.sstop_fs_info_text_delay = null
+            window.sstop_fs_info_text.hide(0);
+            window.sstop_fs_info_text_delay = null;
             // console.log("closed faster!  " + Math.random())
           }
         }
-      }, 80)
+      }, 80);
     },
 
     set: function (text) {
-      sstop_fs_info_text.text = text
+      sstop_fs_info_text.text = text;
     },
 
     text: "'Loading...'"
-  }
+  };
 
-  $('#sstop_fs_info_text').hide()
+  $('#sstop_fs_info_text').hide();
 
   window.sstop_fs_info_text_interval = setInterval(function () {
-    $($('#sstop_fs_info_text')[0].childNodes[0])[0].innerText = eval(window.sstop_fs_info_text.text)
-  }, 10)
+    $($('#sstop_fs_info_text')[0].childNodes[0])[0].innerText = eval(window.sstop_fs_info_text.text);
+  }, 10);
 
   // create stop button
-  document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px; padding-right:4px;'></div>"
+  document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px; padding-right:4px;'></div>";
   document.body.innerHTML += `
 <style id="sstop_style">
 #sstop_button {
@@ -678,9 +678,9 @@ if (window.$) {
   }
 
 </style>
-`
-  stop_div = document.getElementById('sstop')
-  stop_div.innerHTML = ''
+`;
+  stop_div = document.getElementById('sstop');
+  stop_div.innerHTML = '';
 
   // stop_div.innerHTML += "<div id='sstop_wrapper' style='position:static; margin:0;'></div>"
   // sstop_wrapper = document.getElementById("sstop_wrapper")
@@ -692,82 +692,82 @@ if (window.$) {
   // document.getElementById("sstop_slider_div").innerHTML += '<input onchange="1!=window.sstop_paused&&window.sstop_timer.set_interval(this.value);" id="sstop_slider" type="range" min="300" max="5000" value="1500" style="position: absolute;">'
 
   window.sstop = function () {
-    window.sstop_timer.stop()
-  }
+    window.sstop_timer.stop();
+  };
 
   window.sstop_btn = function () {
     try {
-      $(window).unbind('keypress')
+      $(window).unbind('keypress');
     } catch (e) {}
 
     // remove elements
-    window.sstop_rm()
+    window.sstop_rm();
 
     // stop timer
-    sstop()
+    sstop();
 
     // remove variables
-    window.sstop_timer = null
-    window.sstop_alert = null
-    window.sstop_btn = null
-    window.sstop = null
-    window.toNodeList = null
-    window.sstop_rm = null
-    window.LoadCSS = null
-    window.sstop_paused = null
+    window.sstop_timer = null;
+    window.sstop_alert = null;
+    window.sstop_btn = null;
+    window.sstop = null;
+    window.toNodeList = null;
+    window.sstop_rm = null;
+    window.LoadCSS = null;
+    window.sstop_paused = null;
 
-    window.sstop_slider = null
-    window.sstop_info_text = null
-    clearInterval(window.sstop_slider_interval)
-    clearInterval(window.sstop_fs_info_text_interval)
-    window.sstop_slider_interval = null
-    window.sstop_fs_info_text = null
-    window.sstop_fs_info_text_delay = null
-    window.sstop_slider_distance_x = null
-    window.sstop_slider_distance_y = null
-    window.sstop_hide_temp_key = null
-    tailwindcss_script = null
-    tailwindcss_script_config = null
-    window.sstop_hide_temp_key_selecting = null
-    window.update_sstop_hide_temp_key = null
-    window.sstop_hide_temp_key_selecting_allowed = null
-    window.tailwind = null
-  }
+    window.sstop_slider = null;
+    window.sstop_info_text = null;
+    clearInterval(window.sstop_slider_interval);
+    clearInterval(window.sstop_fs_info_text_interval);
+    window.sstop_slider_interval = null;
+    window.sstop_fs_info_text = null;
+    window.sstop_fs_info_text_delay = null;
+    window.sstop_slider_distance_x = null;
+    window.sstop_slider_distance_y = null;
+    window.sstop_hide_temp_key = null;
+    tailwindcss_script = null;
+    tailwindcss_script_config = null;
+    window.sstop_hide_temp_key_selecting = null;
+    window.update_sstop_hide_temp_key = null;
+    window.sstop_hide_temp_key_selecting_allowed = null;
+    window.tailwind = null;
+  };
 
   window.sstop_rm = function () {
     try {
       // remove elements
-      document.getElementById('sstop').remove()
-      document.getElementById('sstop_style').remove()
-      document.getElementById('sstop_vendor_prefixes_script').remove()
-      document.getElementsByClassName('nav-slide')[0].remove()
-      document.getElementById('sstop_info_text').remove()
-      document.getElementById('sstop_fs_info_text').remove()
+      document.getElementById('sstop').remove();
+      document.getElementById('sstop_style').remove();
+      document.getElementById('sstop_vendor_prefixes_script').remove();
+      document.getElementsByClassName('nav-slide')[0].remove();
+      document.getElementById('sstop_info_text').remove();
+      document.getElementById('sstop_fs_info_text').remove();
       for (i in range(20)) {
         for (trash of document.getElementsByClassName('sstop-trash')) {
-          trash.remove()
+          trash.remove();
         }
       }
     } catch (error) {}
-  }
+  };
 
-  window.addEventListener('resize', resized)
+  window.addEventListener('resize', resized);
 
-  resized()
+  resized();
 
   function resized () {
-    document.getElementById('sstop_slider').style.width = parseInt((95 / 100) * document.getElementById('sstop_button').offsetWidth) + 'px'
+    document.getElementById('sstop_slider').style.width = parseInt((95 / 100) * document.getElementById('sstop_button').offsetWidth) + 'px';
   }
 
   function answer_twoOp () {
-    let correct_answer = -1
+    let correct_answer = -1;
     try {
-      const answers = questions.find(q => q.id == window.location.pathname.split('/')[2])
+      const answers = questions.find(q => q.id == window.location.pathname.split('/')[2]);
       for (i of range(parseInt(answers.options.length))) {
-        if (answers.options[i].correct === 1) { correct_answer = i }
+        if (answers.options[i].correct === 1) { correct_answer = i; }
       }
-      console.log('Correct answer: ' + parseInt(correct_answer + 1))
-      document.getElementById('option' + correct_answer).click()
+      console.log('Correct answer: ' + parseInt(correct_answer + 1));
+      document.getElementById('option' + correct_answer).click();
     } catch (error) {}
   }
 
@@ -804,131 +804,131 @@ if (window.$) {
 
     //  } catch (error) {}
 
-    let correct_answer = -1
+    let correct_answer = -1;
     try {
       if (document.getElementById('option0').attributes.correct.value === '1') {
-        correct_answer = 0
+        correct_answer = 0;
       } else if (document.getElementById('option1').attributes.correct.value === '1') {
-        correct_answer = 1
+        correct_answer = 1;
       }
-      console.log('Correct answer: ' + parseInt(correct_answer + 1))
-      document.getElementById('option' + correct_answer).click()
+      console.log('Correct answer: ' + parseInt(correct_answer + 1));
+      document.getElementById('option' + correct_answer).click();
     } catch (error) {}
   }
 
   function answer_vpisovacka () {
-    let correct_answer = ''
+    let correct_answer = '';
     try {
-      const answers = questions.find(q => q.id == window.location.pathname.split('/')[2])
-      correct_answer = answers.question[1][1].answer[0]
-      console.log('Correct answer: ' + correct_answer)
-      document.getElementById('answer0').value = correct_answer
-      document.getElementById('evaluate').click()
-      nextQuestion()
+      const answers = questions.find(q => q.id == window.location.pathname.split('/')[2]);
+      correct_answer = answers.question[1][1].answer[0];
+      console.log('Correct answer: ' + correct_answer);
+      document.getElementById('answer0').value = correct_answer;
+      document.getElementById('evaluate').click();
+      nextQuestion();
     } catch (error) {}
   }
 
   function answer_hadanky () {
-    let correct_answer = ''
+    let correct_answer = '';
     try {
-      const answers = questions.find(q => q.id == window.location.pathname.split('/')[2])
-      correct_answer = answers.item.question[1][1].answer[0]
-      console.log('Correct answer: ' + correct_answer)
-      document.getElementById('answer0').value = correct_answer
-      document.getElementById('evaluate').click()
-      nextQuestion()
+      const answers = questions.find(q => q.id == window.location.pathname.split('/')[2]);
+      correct_answer = answers.item.question[1][1].answer[0];
+      console.log('Correct answer: ' + correct_answer);
+      document.getElementById('answer0').value = correct_answer;
+      document.getElementById('evaluate').click();
+      nextQuestion();
     } catch (error) {}
   }
 
   function answer_diktat () {
-    const correct_answer = ''
-    let el = ''
+    const correct_answer = '';
+    let el = '';
     try {
       for (i of range($('[answered]').length)) {
         if ($('[answered]')[i].attributes.answered.value === '0') {
-          el = $('[answered]')[i].childNodes[1]
-          $('[answered]')[i].attributes.answered.value = '1'
-          break
+          el = $('[answered]')[i].childNodes[1];
+          $('[answered]')[i].attributes.answered.value = '1';
+          break;
         }
       }
 
       // if element exists
       if (el) {
         if (el.childNodes[0].attributes.correct.value === '1') {
-          clickVariant($(el.childNodes[0]))
+          clickVariant($(el.childNodes[0]));
         } else if (el.childNodes[1].attributes.correct.value === '1') {
-          clickVariant($(el.childNodes[1]))
+          clickVariant($(el.childNodes[1]));
         }
       }
 
       //
 
       if (window.finished === 1) {
-        nextDictate()
-        window.finished = 0
+        nextDictate();
+        window.finished = 0;
       }
     } catch (error) {}
   }
 
   function answer_ukolovka () {
-    let correct_answer = ''
+    let correct_answer = '';
     try {
-      const answers = questions.find(q => q.id == window.location.pathname.split('/')[2])
-      correct_answer = answers.item.question[answers.item.question.length - 1][1].answer[0]
-      console.log('Correct answer: ' + correct_answer)
-      document.getElementById('answer0').value = correct_answer
-      document.getElementById('evaluate').click()
-      nextQuestion()
+      const answers = questions.find(q => q.id == window.location.pathname.split('/')[2]);
+      correct_answer = answers.item.question[answers.item.question.length - 1][1].answer[0];
+      console.log('Correct answer: ' + correct_answer);
+      document.getElementById('answer0').value = correct_answer;
+      document.getElementById('evaluate').click();
+      nextQuestion();
     } catch (error) {}
   }
 
   function answer_pexeso () {
-    const correct_answer = ''
+    const correct_answer = '';
     try {
-      evaluate(1)
-      nextSet()
+      evaluate(1);
+      nextSet();
     } catch (error) {}
   }
 
   function answer_otazky () {
-    let correct_answer = ''
+    let correct_answer = '';
     try {
-      const variants = ['variantjedna', 'variantdva', 'varianttri', 'variantctyri']
+      const variants = ['variantjedna', 'variantdva', 'varianttri', 'variantctyri'];
       for (i of variants) {
         if (document.getElementById(i).attributes.correct.value === '1') {
-          correct_answer = i
-          break
+          correct_answer = i;
+          break;
         }
       }
-      console.log('Correct answer: ' + document.getElementById(i).innerText)
-      clickVariant($(document.getElementById(i)))
-      nextQuestion()
+      console.log('Correct answer: ' + document.getElementById(i).innerText);
+      clickVariant($(document.getElementById(i)));
+      nextQuestion();
     } catch (error) {}
   }
 
   function answer_rozrazovacka () {
-    const correct_answer = ''
-    let box = -1
+    const correct_answer = '';
+    let box = -1;
     try {
       for (i of range(document.getElementById('pool').childNodes.length)) {
-        const el = document.getElementById('word' + i)
-        wordClicked($(el))
+        const el = document.getElementById('word' + i);
+        wordClicked($(el));
         if (el.attributes.correctvariant.value === '0') {
-          box = 0
+          box = 0;
         } else if (el.attributes.correctvariant.value === '1') {
-          box = 1
+          box = 1;
         } else {
-          sstop_alert('This type of "rozřazovačka" is saddly not supported!')
-          window.sstop_btn()
-          break
+          sstop_alert('This type of "rozřazovačka" is saddly not supported!');
+          window.sstop_btn();
+          break;
         }
         for (e of range(document.getElementById('set' + box).childNodes.length)) {
           if (e % 2 == 0) {
             if (document.getElementById('set' + box).childNodes[e].attributes.currentword.value === '-1') {
               // console.log("box: " + box + ", set: " + e)
               if (el.attributes.currentbox.value === '-1') {
-                wordBoxClicked($(document.getElementById('wordBox-' + box + '-' + parseInt(e / 2))))
-                break
+                wordBoxClicked($(document.getElementById('wordBox-' + box + '-' + parseInt(e / 2))));
+                break;
               }
             }
           }
@@ -936,311 +936,311 @@ if (window.$) {
       }
 
       setTimeout(() => {
-        evaluate()
-        nextSet()
-      }, window.sstop_timer.iv / 5)
+        evaluate();
+        nextSet();
+      }, window.sstop_timer.iv / 5);
     } catch (error) {}
   }
 
   function answer_roboti () {
-    let correct_answer = -1
+    let correct_answer = -1;
     try {
-      correct_answer = questions[questionOffset].options[1].correct
-      console.log('Correct answer: ' + parseInt(correct_answer))
-      document.getElementById('option' + correct_answer).click()
+      correct_answer = questions[questionOffset].options[1].correct;
+      console.log('Correct answer: ' + parseInt(correct_answer));
+      document.getElementById('option' + correct_answer).click();
       if (finished == 1) {
-        document.getElementById('next').click()
+        document.getElementById('next').click();
       }
     } catch (error) {}
   }
 
   function answer_mluvene_diktaty () {
-    const correct_answer = -1
+    const correct_answer = -1;
     try {
       window.setInterval(function () {
         try {
           if (document.getElementsByClassName('audio')[0].childNodes[0]) {
-            document.getElementsByClassName('audio')[0].childNodes[0].remove()
+            document.getElementsByClassName('audio')[0].childNodes[0].remove();
           } else if (document.getElementsByClassName('audio')[1].childNodes[0]) {
-            document.getElementsByClassName('audio')[1].childNodes[0].remove()
+            document.getElementsByClassName('audio')[1].childNodes[0].remove();
           }
         } catch (error) {}
-      }, 1)
+      }, 1);
 
       if (document.getElementsByClassName('tlacitko large primary nextItem').length > 0) {
-        document.getElementsByClassName('tlacitko large primary nextItem')[0].click()
+        document.getElementsByClassName('tlacitko large primary nextItem')[0].click();
       } else if (document.getElementById('finalBoard').style.display != 'none') {
-        document.getElementById('startTyping').click()
+        document.getElementById('startTyping').click();
       } else {
-        console.log('Correct answer: ' + window.sentence)
-        document.getElementById('sentence').value = window.sentence
-        document.getElementById('evaluate').click()
-        document.getElementById('nextSentence').click()
+        console.log('Correct answer: ' + window.sentence);
+        document.getElementById('sentence').value = window.sentence;
+        document.getElementById('evaluate').click();
+        document.getElementById('nextSentence').click();
       }
     } catch (error) {}
   }
 
   function answer_krok_po_kroku () {
-    let correct_answer = -1
+    let correct_answer = -1;
     try {
       if (finished == '1') {
-        nextQuestion()
+        nextQuestion();
       } else {
         if (document.getElementById('option0').attributes.correct.value === '1') {
-          correct_answer = 0
+          correct_answer = 0;
         } else if (document.getElementById('option1').attributes.correct.value === '1') {
-          correct_answer = 1
+          correct_answer = 1;
         }
-        console.log('Correct answer: ' + parseInt(correct_answer + 1))
-        document.getElementById('option' + correct_answer).click()
-        document.getElementById('option0').scrollIntoView()
-        window.scrollBy(0, -70)
+        console.log('Correct answer: ' + parseInt(correct_answer + 1));
+        document.getElementById('option' + correct_answer).click();
+        document.getElementById('option0').scrollIntoView();
+        window.scrollBy(0, -70);
       }
     } catch (error) {}
   }
 
   function answer_rozbory () {
-    const correct_answer = -1
+    const correct_answer = -1;
     try {
       if (finished == '1') {
-        nextSentence()
+        nextSentence();
       } else {
         // get the chunks of the sentence
-        unfiltered_chunks = Array.prototype.slice.call(document.getElementById('sentence').childNodes)
-        filtered_chunks = Array.prototype.slice.call(unfiltered_chunks)
-        filtered_chunks.splice(0, unfiltered_chunks.length)
+        unfiltered_chunks = Array.prototype.slice.call(document.getElementById('sentence').childNodes);
+        filtered_chunks = Array.prototype.slice.call(unfiltered_chunks);
+        filtered_chunks.splice(0, unfiltered_chunks.length);
         for (i in range(document.getElementById('sentence').childNodes.length)) {
-          nodeName = Array.from(document.getElementById('sentence').childNodes)[i].nodeName
+          nodeName = Array.from(document.getElementById('sentence').childNodes)[i].nodeName;
           if (nodeName === 'SPAN' || nodeName === 'DIV') {
-            filtered_chunks.push(unfiltered_chunks[i])
+            filtered_chunks.push(unfiltered_chunks[i]);
           }
         }
 
         for (marker of document.getElementById('markers').childNodes) {
-          marker.click()
+          marker.click();
 
-          chunk_i = 0
+          chunk_i = 0;
           for (chunk of filtered_chunks) {
             if (correctCategories[chunk_i] === marker.attributes.category.value) {
-              chunk.click()
+              chunk.click();
             }
-            chunk_i += 1
+            chunk_i += 1;
           }
         }
 
         // finished marking
-        document.getElementById('evaluate').click()
+        document.getElementById('evaluate').click();
       }
     } catch (error) {}
   }
 
   function answer_presouvani () {
-    const correct_answer = -1
+    const correct_answer = -1;
     try {
-      solution()
-      document.getElementById('evaluate').click()
+      solution();
+      document.getElementById('evaluate').click();
       setTimeout(function () {
-        nextQuestion()
-      }, 200)
+        nextQuestion();
+      }, 200);
     } catch (error) {}
   }
 
   function answer_carky () {
-    const correct_answer = -1
+    const correct_answer = -1;
     try {
-      gaps = []
+      gaps = [];
       for (i of range(1000)) {
         if (document.getElementById('gap' + i)) {
-          gaps.push(document.getElementById('gap' + i))
+          gaps.push(document.getElementById('gap' + i));
         }
       }
 
       for (gap of gaps) {
         if (gap.attributes.correct.value == '1') {
-          gap.click()
+          gap.click();
         }
       }
 
-      document.getElementById('evaluate').click()
+      document.getElementById('evaluate').click();
       setTimeout(function () {
-        nextSentence()
-      }, 200)
+        nextSentence();
+      }, 200);
     } catch (error) {}
   }
 
   function answer_zavody_v_psani () {
-    const correct_answer = -1
+    const correct_answer = -1;
     try {
       if (finished == '1' || itemOffset == '-1') {
         // nothing, the game ended or hasn't started
       } else {
-        $('#answer').val(items[itemOffset])
-        $('#answer').unbind('input')
+        $('#answer').val(items[itemOffset]);
+        $('#answer').unbind('input');
         setTimeout(function () {
           $('#answer').on('input', function () {
-            evaluate()
-          })
-        }, 1)
+            evaluate();
+          });
+        }, 1);
         setTimeout(function () {
-          $('#answer')[0].dispatchEvent(new Event('input', { bubbles: true }))
-        }, 3)
-        console.log('Correct answer: ' + items[itemOffset])
+          $('#answer')[0].dispatchEvent(new Event('input', { bubbles: true }));
+        }, 3);
+        console.log('Correct answer: ' + items[itemOffset]);
       }
-    } catch (error) { console.error(error) }
+    } catch (error) { console.error(error); }
   }
 
   // check if the website is supported
   if (window.location.hostname.includes('www.umime')) {
-    const ulr_ex_type = window.location.pathname.split('/')[1]
+    const ulr_ex_type = window.location.pathname.split('/')[1];
     if (ulr_ex_type.includes('doplnovacka') || ulr_ex_type.includes('rozhodovacka')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_twoOp()
+      answer_twoOp();
       // loop
       window.sstop_timer.start(function () {
-        answer_twoOp()
-      }, 1500)
+        answer_twoOp();
+      }, 1500);
     } else if (window.location.href.includes('?p=zavodyPsani')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_zavody_v_psani()
+      answer_zavody_v_psani();
 
       // window.sstop_slider.min = 50;
 
       // loop
       window.sstop_timer.start(function () {
-        answer_zavody_v_psani()
-      }, 1500)
+        answer_zavody_v_psani();
+      }, 1500);
     } else if (window.location.href.includes('?p=zavody') || window.location.href.includes('?p=tymovka')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_twoOp_zavody()
+      answer_twoOp_zavody();
       // loop
       window.sstop_timer.start(function () {
-        answer_twoOp_zavody()
-      }, 1500)
+        answer_twoOp_zavody();
+      }, 1500);
     } else if (window.location.href.includes('/vpisovacka')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_vpisovacka()
+      answer_vpisovacka();
       // loop
       window.sstop_timer.start(function () {
-        answer_vpisovacka()
-      }, 1500)
+        answer_vpisovacka();
+      }, 1500);
     } else if (window.location.href.includes('/hadanky')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_hadanky()
+      answer_hadanky();
       // loop
       window.sstop_timer.start(function () {
-        answer_hadanky()
-      }, 1500)
+        answer_hadanky();
+      }, 1500);
     } else if (window.location.href.includes('/diktat')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_diktat()
+      answer_diktat();
 
-      window.sstop_slider.min = 50
+      window.sstop_slider.min = 50;
 
       // loop
       window.sstop_timer.start(function () {
-        answer_diktat()
-      }, 1500)
+        answer_diktat();
+      }, 1500);
     } else if (window.location.href.includes('/ukolovka')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_ukolovka()
+      answer_ukolovka();
       // loop
       window.sstop_timer.start(function () {
-        answer_ukolovka()
-      }, 1500)
+        answer_ukolovka();
+      }, 1500);
     } else if (window.location.href.includes('/pexeso')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_pexeso()
+      answer_pexeso();
 
-      window.sstop_slider.min = 50
+      window.sstop_slider.min = 50;
 
       // loop
       window.sstop_timer.start(function () {
-        answer_pexeso()
-      }, 1500)
+        answer_pexeso();
+      }, 1500);
     } else if (window.location.href.includes('/otazky')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_otazky()
+      answer_otazky();
       // loop
       window.sstop_timer.start(function () {
-        answer_otazky()
-      }, 1500)
+        answer_otazky();
+      }, 1500);
     } else if (window.location.href.includes('/rozrazovacka')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_rozrazovacka()
+      answer_rozrazovacka();
       // loop
       try {
         window.sstop_timer.start(function () {
-          answer_rozrazovacka()
-        }, 1500)
+          answer_rozrazovacka();
+        }, 1500);
       } catch (error) {}
     } else if (window.location.href.includes('/roboti')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_roboti()
+      answer_roboti();
       // loop
       window.sstop_timer.start(function () {
-        answer_roboti()
-      }, 1500)
+        answer_roboti();
+      }, 1500);
     } else if (window.location.href.includes('/mluvene-diktaty')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_mluvene_diktaty()
+      answer_mluvene_diktaty();
       // loop
       window.sstop_timer.start(function () {
-        answer_mluvene_diktaty()
-      }, 1500)
+        answer_mluvene_diktaty();
+      }, 1500);
     } else if (window.location.href.includes('/krok-po-kroku') || window.location.href.includes('/chat') || window.location.href.includes('/odvozovani')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_krok_po_kroku()
+      answer_krok_po_kroku();
       // loop
       window.sstop_timer.start(function () {
-        answer_krok_po_kroku()
-      }, 1500)
+        answer_krok_po_kroku();
+      }, 1500);
     } else if (window.location.href.includes('/rozbory') || window.location.href.includes('/tvorba_slov')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_rozbory()
+      answer_rozbory();
       // loop
       window.sstop_timer.start(function () {
-        answer_rozbory()
-      }, 1500)
+        answer_rozbory();
+      }, 1500);
     } else if (window.location.href.includes('/presouvani')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_presouvani()
+      answer_presouvani();
       // loop
       window.sstop_timer.start(function () {
-        answer_presouvani()
-      }, 1500)
+        answer_presouvani();
+      }, 1500);
     } else if (window.location.href.includes('/psani-carek') || window.location.href.includes('/carky') || window.location.href.includes('/carek')) {
-      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver')
+      console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
-      answer_carky()
+      answer_carky();
       // loop
       window.sstop_timer.start(function () {
-        answer_carky()
-      }, 1500)
+        answer_carky();
+      }, 1500);
     } else {
-      window.sstop_rm()
-      sstop_alert('This exercise is not supported!')
-      window.sstop_btn()
+      window.sstop_rm();
+      sstop_alert('This exercise is not supported!');
+      window.sstop_btn();
     }
   } else {
-    window.sstop_rm()
-    sstop_alert('This website is not supported!')
-    window.sstop_btn()
+    window.sstop_rm();
+    sstop_alert('This website is not supported!');
+    window.sstop_btn();
   }
 } else {
-  console.log('No jQuery installed on this website!')
+  console.log('No jQuery installed on this website!');
 }
