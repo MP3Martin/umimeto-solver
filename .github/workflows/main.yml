@@ -16,6 +16,11 @@ jobs:
         with:
           ref: ${{ github.ref }}
           
+      - name: Semistandard
+        uses: MP3Martin/semistandard-action@latest
+        with:
+          args: --fix
+          
       - name: delete minified file
         continue-on-error: true
         run: rm source/main.min.js
