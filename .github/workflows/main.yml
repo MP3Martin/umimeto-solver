@@ -17,7 +17,7 @@ jobs:
           ref: ${{ github.ref }}
           
       - name: Semistandard
-        uses: MP3Martin/semistandard-action@main
+        uses: MP3Martin/semistandard-action@master
         with:
           args: --fix
           
