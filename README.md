@@ -16,7 +16,7 @@
 
 🇨🇿 Click **[here](https://github-com.translate.goog/MP3Martin/umimeto-solver?_x_tr_sl=en&_x_tr_tl=cs&_x_tr_hl=cs&_x_tr_pto=wapp)** to see this webpage in Czech language 🇨🇿
 
-# ⚠️ This project is currently not working because of a new update on umimeto ⚠️
+# ⚠️ Not all exercises are working because of a new update on umimeto ⚠️
 
 # Code
 *(paste it into your browser console (`ctrl` + `shift` + `c` and select `console` tab) and press `enter`)*
