@@ -38,8 +38,8 @@ if (window.$) {
     }
   };
 
-  document.body.innerHTML += '<script type="text/javascript" class="sstop-trash" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"><\/script>';
-  document.body.innerHTML += "<style class='sstop-trash'> @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap'); </style>";
+  document.body.insertAdjacentHTML('beforeend', '<script type="text/javascript" class="sstop-trash" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"><\/script>');
+  document.body.insertAdjacentHTML('beforeend', "<style class='sstop-trash'> @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap'); </style>");
 
   function LoadCSS (e) { return new Promise(function (n, t) { const o = document.createElement('link'); o.rel = 'stylesheet', o.href = e, o.classList.add('sstop-trash'), document.head.appendChild(o), o.onload = function () { n(); }; }); }
 
@@ -105,7 +105,7 @@ if (window.$) {
   };
 
   // create slide_menu
-  document.body.innerHTML += `
+  document.body.insertAdjacentHTML('beforeend', `
 <div class="nav-slide" style="box-sizing: content-box;">
   <div class="btn-slide"></div>
   <div class="nav-body">
@@ -157,7 +157,7 @@ if (window.$) {
       </div>
   </div>
 </div>
-`;
+`)
 
   LoadCSS('https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css').then(function () {
     // do stuff
@@ -283,7 +283,7 @@ if (window.$) {
 
     // add special style to settings options
     for (nav of Array.prototype.slice.call(document.getElementsByClassName('nav'))) {
-      nav.innerHTML += '<li><p class="cur-default nav-no-hover" ><i><br></i></p></li>';
+      nav.insertAdjacentHTML('beforeend', '<li><p class="cur-default nav-no-hover" ><i><br></i></p></li>');
       for (li of Array.prototype.slice.call($(nav).children())) {
         el = li.childNodes[0];
 
@@ -346,8 +346,8 @@ if (window.$) {
   }, 10);
 
   // create info text
-  document.body.innerHTML += "<div id='sstop_info_text' style='position:fixed; font-size: 1.3rem; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>";
-  document.getElementById('sstop_info_text').innerHTML += '<p> </p>';
+  document.body.insertAdjacentHTML('beforeend', "<div id='sstop_info_text' style='position:fixed; font-size: 1.3rem; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>")
+  document.getElementById('sstop_info_text').insertAdjacentHTML('beforeend', '<p> </p>');
 
   // prepare info text animation
   $('#sstop_info_text').css('transition', 'transform 300ms ease-out');
@@ -412,11 +412,11 @@ if (window.$) {
     }
   };
 
-  document.body.innerHTML += '<script id="sstop_vendor_prefixes_script" src="https://cdnjs.cloudflare.com/ajax/libs/css3finalize/4.0.1/jquery.css3finalize.min.js"></script>';
+  document.body.insertAdjacentHTML('beforeend', '<script id="sstop_vendor_prefixes_script" src="https://cdnjs.cloudflare.com/ajax/libs/css3finalize/4.0.1/jquery.css3finalize.min.js"></script>');
 
   // create fs info text
-  document.body.innerHTML += "<div id='sstop_fs_info_text' style='pointer-events: none; background-color: rgba(0, 0, 0, 0.15); position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999999999;'></div>";
-  document.getElementById('sstop_fs_info_text').innerHTML += "<h1 style='margin: 0; padding: 0; text-align: center; font-family: Share Tech Mono, monospace; position: fixed; top: 45%; left: 0; right: 0; margin-top: -7vh; font-size: calc((3vw + 3vh) * 0.7); color: rgba(166, 230, 212, 0.96); text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black, -0.03em -0.03em black, -0.03em 0.03em black, 0.03em -0.03em black, 0.03em 0.03em black, 3px 3px 8px rgba(0,0,0,0.99), rgba(0, 0, 0, 0.99) 2px 2px 8px;'>Hello World</h1>";
+  document.body.insertAdjacentHTML('beforeend', "<div id='sstop_fs_info_text' style='pointer-events: none; background-color: rgba(0, 0, 0, 0.15); position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; z-index: 9999999999;'></div>");
+  document.getElementById('sstop_fs_info_text').insertAdjacentHTML('beforeend', "<h1 style='margin: 0; padding: 0; text-align: center; font-family: Share Tech Mono, monospace; position: fixed; top: 45%; left: 0; right: 0; margin-top: -7vh; font-size: calc((3vw + 3vh) * 0.7); color: rgba(166, 230, 212, 0.96); text-shadow: 0.03em 0 black, 0 0.03em black, -0.03em 0 black, 0 -0.03em black, -0.03em -0.03em black, -0.03em 0.03em black, 0.03em -0.03em black, 0.03em 0.03em black, 3px 3px 8px rgba(0,0,0,0.99), rgba(0, 0, 0, 0.99) 2px 2px 8px;'>Hello World</h1>");
 
   // -- prepare animation --
   // $($("#sstop_fs_info_text")[0].childNodes[0]).css('transition', 'transform 300ms ease-out')
@@ -547,8 +547,8 @@ if (window.$) {
   }, 10);
 
   // create stop button
-  document.body.innerHTML += "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px; padding-right:4px;'></div>";
-  document.body.innerHTML += `
+  document.body.insertAdjacentHTML('beforeend', "<div id='sstop' style='position:fixed; top:0; right:0; margin:5px; padding-right:4px;'></div>");
+  document.body.insertAdjacentHTML('beforeend', `
 <style id="sstop_style">
 #sstop_button {
   color: #ffffff;
@@ -678,7 +678,7 @@ if (window.$) {
   }
 
 </style>
-`;
+`);
   stop_div = document.getElementById('sstop');
   stop_div.innerHTML = '';
 
@@ -1092,6 +1092,25 @@ if (window.$) {
   // check if the website is supported
   if (window.location.hostname.includes('www.umime')) {
     const ulr_ex_type = window.location.pathname.split('/')[1];
+    async function loadItems() {
+      const searchParams = new URLSearchParams({user, ps, kc, chosenProblem, exercise, cookieHash});
+      const path = psType === ('resourceData' && specs.resourceData === 'binaryChoice') ? 'universalLoadMedal.ps' : 'doplnovackaLoadQuestionsBinaryChoiceData.php';
+      const response = await fetch(`${apiUrl}/${path}?${searchParams.toString()}`);
+      const data = await response.json();
+      items = data.items;
+      itemNum = items.length;
+
+      const optionMaxLength = items
+          .map((item) => Math.max(getFormattedLength(item.options[0].option), getFormattedLength(item.options[0].option)))
+          .reduce((acc, len) => Math.max(acc, len), 0);
+      document.getElementById('options').classList.toggle('short', optionMaxLength <= 3);
+
+      finished = true;
+      preloadImages(items);
+    }
+    loadItems().then(()=>{
+      window.questions = items;
+    })
     if (ulr_ex_type.includes('doplnovacka') || ulr_ex_type.includes('rozhodovacka')) {
       console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
