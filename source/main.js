@@ -1112,7 +1112,7 @@ if (window.$) {
       loadItems().then(() => {
         window.questions = items;
       });
-    } catch () {console.log('New update fix not working :(')}
+    } catch (e) {console.log('New update fix not working :(')}
     if (ulr_ex_type.includes('doplnovacka') || ulr_ex_type.includes('rozhodovacka')) {
       console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
