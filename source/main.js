@@ -157,7 +157,7 @@ if (window.$) {
       </div>
   </div>
 </div>
-`)
+`);
 
   LoadCSS('https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css').then(function () {
     // do stuff
@@ -346,7 +346,7 @@ if (window.$) {
   }, 10);
 
   // create info text
-  document.body.insertAdjacentHTML('beforeend', "<div id='sstop_info_text' style='position:fixed; font-size: 1.3rem; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>")
+  document.body.insertAdjacentHTML('beforeend', "<div id='sstop_info_text' style='position:fixed; font-size: 1.3rem; bottom:0; left:0; margin:5px; padding-right:4px; height: 1rem; opacity: 0.9;'></div>");
   document.getElementById('sstop_info_text').insertAdjacentHTML('beforeend', '<p> </p>');
 
   // prepare info text animation
@@ -1092,8 +1092,8 @@ if (window.$) {
   // check if the website is supported
   if (window.location.hostname.includes('www.umime')) {
     const ulr_ex_type = window.location.pathname.split('/')[1];
-    async function loadItems() {
-      const searchParams = new URLSearchParams({user, ps, kc, chosenProblem, exercise, cookieHash});
+    async function loadItems () {
+      const searchParams = new URLSearchParams({ user, ps, kc, chosenProblem, exercise, cookieHash });
       const path = psType === ('resourceData' && specs.resourceData === 'binaryChoice') ? 'universalLoadMedal.ps' : 'doplnovackaLoadQuestionsBinaryChoiceData.php';
       const response = await fetch(`${apiUrl}/${path}?${searchParams.toString()}`);
       const data = await response.json();
@@ -1101,16 +1101,16 @@ if (window.$) {
       itemNum = items.length;
 
       const optionMaxLength = items
-          .map((item) => Math.max(getFormattedLength(item.options[0].option), getFormattedLength(item.options[0].option)))
-          .reduce((acc, len) => Math.max(acc, len), 0);
+        .map((item) => Math.max(getFormattedLength(item.options[0].option), getFormattedLength(item.options[0].option)))
+        .reduce((acc, len) => Math.max(acc, len), 0);
       document.getElementById('options').classList.toggle('short', optionMaxLength <= 3);
 
       finished = true;
       preloadImages(items);
     }
-    loadItems().then(()=>{
+    loadItems().then(() => {
       window.questions = items;
-    })
+    });
     if (ulr_ex_type.includes('doplnovacka') || ulr_ex_type.includes('rozhodovacka')) {
       console.log('\n\nSource code: https://github.com/MP3Martin/umimeto-solver');
       // run for the first time
