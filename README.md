@@ -76,3 +76,5 @@ https://user-images.githubusercontent.com/60501493/173131436-96fed050-b999-46ea-
 <br><br>
 
 Thanks for **⭐** this repository. *❤️*
+
+#### Archived because https://www.umimeto.org/ put their code in an anonymous function and now even obfuscated their code. Contact me at https://discord.mp3martin.xyz/ or [business@mp3martin.xyz](mailto:business@mp3martin.xyz) if you want to unarchive this repo and contribute.
